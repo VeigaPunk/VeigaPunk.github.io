@@ -5,9 +5,10 @@ cd "$(dirname "$0")/.."
 fail=0
 
 need=(
-  index.html styles.css main.js README.md LICENSE
+  index.html styles.css main.js README.md LICENSE 404.html humans.txt
   assets/dome.svg assets/droid.svg assets/hyperloop.svg assets/ballot.svg
   assets/favicon.svg assets/og-card.svg
+  .well-known/security.txt
 )
 
 echo "== file gate =="
@@ -49,7 +50,7 @@ if command -v python3 >/dev/null 2>&1; then
     if curl -s -o /dev/null "http://127.0.0.1:${port}/"; then break; fi
     sleep 0.15
   done
-  for path in / /styles.css /main.js /assets/og-card.svg; do
+  for path in / /styles.css /main.js /assets/og-card.svg /404.html /humans.txt /.well-known/security.txt; do
     code=$(curl -s -o /dev/null -w '%{http_code}' "http://127.0.0.1:${port}${path}" || echo 000)
     if [[ "$code" == "200" ]]; then
       echo "OK  local $path -> $code"

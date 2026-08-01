@@ -98,9 +98,18 @@ img {
   .nav-toggle,
   .hero-bg,
   .hero-actions,
+  .hero-stats,
   .ballot,
   .skip-link {
     display: none !important;
+  }
+
+  .species-chips li,
+  .ruler-card,
+  .species-block {
+    border-color: #999 !important;
+    color: #111 !important;
+    background: #fff !important;
   }
 
   a {
