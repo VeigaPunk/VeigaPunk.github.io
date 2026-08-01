@@ -128,6 +128,25 @@
     });
   }
 
+  /* Hash navigation: move focus to section for keyboard / AT users */
+  function focusHashTarget() {
+    var id = (window.location.hash || "").replace(/^#/, "");
+    if (!id) return;
+    var el = document.getElementById(id);
+    if (!el) return;
+    if (!el.hasAttribute("tabindex")) {
+      el.setAttribute("tabindex", "-1");
+    }
+    window.setTimeout(function () {
+      el.focus({ preventScroll: true });
+    }, 0);
+  }
+
+  if (window.location.hash) {
+    focusHashTarget();
+  }
+  window.addEventListener("hashchange", focusHashTarget);
+
   /* Highlight current section in nav (IntersectionObserver) */
   var sectionIds = [
     "astrography",

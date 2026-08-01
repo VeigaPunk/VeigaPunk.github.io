@@ -38,6 +38,22 @@ else
   echo "OK  no Google Fonts CDN references"
 fi
 
+echo "== asset ref gate =="
+# Local relative href/src from HTML must exist on disk
+while IFS= read -r u; do
+  case "$u" in
+    ""|http*|https*|\#*|mailto:*|data:*) continue ;;
+  esac
+  # strip query/hash
+  u="${u%%\?*}"; u="${u%%\#*}"
+  if [[ -e "$u" ]]; then
+    echo "OK  asset $u"
+  else
+    echo "MISS asset $u"
+    fail=1
+  fi
+done < <(rg -o --no-filename '(?:src|href)="([^"]+)"' index.html 404.html | sed 's/.*="//;s/"$//' | sort -u)
+
 if command -v python3 >/dev/null 2>&1; then
   echo "== local server probe =="
   # Bind ephemeral port so we never collide with a long-lived :8765 server.

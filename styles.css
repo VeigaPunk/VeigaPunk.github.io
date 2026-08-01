@@ -550,16 +550,16 @@ body.nav-open {
 /* Sections */
 .section {
   padding: 4.5rem 1.25rem;
-  /* Defer offscreen layout work (supported browsers) */
-  content-visibility: auto;
-  contain-intrinsic-size: auto 36rem;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .section {
-    content-visibility: visible;
-    contain-intrinsic-size: none;
-  }
+/* Section targets can receive programmatic focus (hash / skip) */
+.section:focus {
+  outline: none;
+}
+
+.section:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 4px;
 }
 
 .section--tint {
