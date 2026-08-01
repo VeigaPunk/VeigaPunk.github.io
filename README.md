@@ -2,6 +2,12 @@
 
 Unofficial, non-commercial fan documentation site for the *Star Wars* canon planet **Plazir-15** (Outer Rim / New Territories). Design homage to the bright bio-dome utopia seen in *The Mandalorian* — not an official Lucasfilm or Disney product.
 
+## Live
+
+- **GitHub repo:** https://github.com/VeigaPunk/plazir-15-site  
+- **GitHub Pages (after Actions deploy):** https://veigapunk.github.io/plazir-15-site/  
+- Deploy: push to `main` runs `.github/workflows/pages.yml` (GitHub Pages via Actions).
+
 ## Open locally
 
 **Option A — static open**

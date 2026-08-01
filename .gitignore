@@ -1,0 +1,16 @@
+# Agent / editor noise
+.grok/
+.grok-*
+.xbgst/
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.idea/
+.vscode/
+.cursor/
+
+# Local env (none expected for static site)
+.env
+.env.*
+!*.example
