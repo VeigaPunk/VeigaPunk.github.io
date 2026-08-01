@@ -14,3 +14,4 @@ Unofficial Plazir-15 fan codex. Dates are ship days on `main`.
 - Ops: `scripts/smoke.sh`, `scripts/deploy.sh`, `.well-known/security.txt`.
 - Schema.org `@graph` (WebSite, Place, WebPage); `prefers-reduced-data` hides hero decoration.
 - CI smoke workflow (no Pages dependency); portable smoke without requiring `rg`.
+- Progressive share button; charter ballot demo persists in `sessionStorage` only.

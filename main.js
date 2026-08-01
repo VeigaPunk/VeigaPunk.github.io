@@ -192,9 +192,10 @@
     });
   }
 
-  /* Charter ballot demo */
+  /* Charter ballot demo (sessionStorage only — never leaves the browser) */
   var form = document.getElementById("charter-ballot");
   var result = document.getElementById("ballot-result");
+  var BALLOT_KEY = "plazir15-charter-ballot-demo";
 
   var labels = {
     aye: "Aye — measured expansion under charter safety review",
@@ -202,7 +203,38 @@
     abstain: "Abstain — presence recorded without preference",
   };
 
+  function showReceipt(value, stamp, opts) {
+    opts = opts || {};
+    result.hidden = false;
+    result.classList.remove("is-error");
+    result.textContent =
+      "Demo receipt sealed · " +
+      labels[value] +
+      " · " +
+      stamp +
+      ". (Local only — nothing was transmitted.)";
+    if (opts.focus) result.focus();
+  }
+
   if (form && result) {
+    try {
+      var prior = window.sessionStorage.getItem(BALLOT_KEY);
+      if (prior) {
+        var parsed = JSON.parse(prior);
+        if (parsed && parsed.value && labels[parsed.value]) {
+          var radio = form.querySelector(
+            'input[name="vote"][value="' + parsed.value + '"]'
+          );
+          if (radio) radio.checked = true;
+          showReceipt(parsed.value, parsed.stamp || "earlier this session", {
+            focus: false,
+          });
+        }
+      }
+    } catch (err) {
+      /* ignore storage errors (private mode, etc.) */
+    }
+
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       var selected = form.querySelector('input[name="vote"]:checked');
@@ -216,18 +248,19 @@
         return;
       }
 
-      result.classList.remove("is-error");
       var stamp = new Date().toLocaleString(undefined, {
         dateStyle: "medium",
         timeStyle: "short",
       });
-      result.textContent =
-        "Demo receipt sealed · " +
-        labels[selected.value] +
-        " · " +
-        stamp +
-        ". (Local only — nothing was transmitted.)";
-      result.focus();
+      showReceipt(selected.value, stamp, { focus: true });
+      try {
+        window.sessionStorage.setItem(
+          BALLOT_KEY,
+          JSON.stringify({ value: selected.value, stamp: stamp })
+        );
+      } catch (err2) {
+        /* ignore */
+      }
     });
 
     form.addEventListener("reset", function () {
@@ -235,8 +268,68 @@
         result.hidden = true;
         result.textContent = "";
         result.classList.remove("is-error");
+        try {
+          window.sessionStorage.removeItem(BALLOT_KEY);
+        } catch (err3) {
+          /* ignore */
+        }
       }, 0);
     });
+  }
+
+  /* Progressive share: Web Share API or clipboard */
+  var shareBtn = document.getElementById("share-site");
+  var shareStatus = document.getElementById("share-status");
+  if (shareBtn) {
+    var canShare =
+      typeof navigator.share === "function" ||
+      (navigator.clipboard && typeof navigator.clipboard.writeText === "function");
+    if (canShare) {
+      shareBtn.hidden = false;
+      shareBtn.addEventListener("click", function () {
+        var payload = {
+          title: "Plazir-15 Fan Codex",
+          text: "Unofficial fan documentation for Plazir-15 — Outer Rim domed paradise.",
+          url: "https://veigapunk.github.io/",
+        };
+        var done = function (msg) {
+          if (!shareStatus) return;
+          shareStatus.hidden = false;
+          shareStatus.textContent = msg;
+        };
+        if (typeof navigator.share === "function") {
+          navigator.share(payload).then(
+            function () {
+              done("Shared via system sheet.");
+            },
+            function () {
+              /* user cancel or failure — try clipboard */
+              if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(payload.url).then(
+                  function () {
+                    done("Link copied to clipboard.");
+                  },
+                  function () {
+                    done("Share cancelled.");
+                  }
+                );
+              } else {
+                done("Share cancelled.");
+              }
+            }
+          );
+        } else if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(payload.url).then(
+            function () {
+              done("Link copied to clipboard.");
+            },
+            function () {
+              done("Could not copy link.");
+            }
+          );
+        }
+      });
+    }
   }
 
   /* Year stamp in footer if present */

@@ -170,7 +170,7 @@ if [[ "${SMOKE_LIVE:-}" == "1" ]]; then
     echo "OK  live has no Google Fonts CDN"
   fi
   body_js=$(curl -s "${base}/main.js")
-  for needle in focusHashTarget is-scrolled requestAnimationFrame; do
+  for needle in focusHashTarget is-scrolled requestAnimationFrame share-site BALLOT_KEY; do
     if echo "$body_js" | text_has "$needle"; then
       echo "OK  live main.js has $needle"
     else
