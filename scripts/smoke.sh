@@ -72,7 +72,7 @@ for f in "${need[@]}"; do
 done
 
 echo "== content gate =="
-for needle in "Guns for Hire" "Wookieepedia" "Grokipedia" "Plazir-15" "N-2"; do
+for needle in "Guns for Hire" "Wookieepedia" "Grokipedia" "Plazir-15" "N-2" "Glossary" "id=\"glossary\"" "id=\"duchess\"" "id=\"bombardier\""; do
   if contains "$needle" index.html; then
     echo "OK  contains: $needle"
   else

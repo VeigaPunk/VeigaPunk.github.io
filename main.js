@@ -154,6 +154,7 @@
     "government",
     "history",
     "ballot",
+    "glossary",
     "appearances",
     "sources",
   ];

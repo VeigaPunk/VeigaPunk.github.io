@@ -16,3 +16,4 @@ Unofficial Plazir-15 fan codex. Dates are ship days on `main`.
 - CI smoke workflow (no Pages dependency); portable smoke without requiring `rg`.
 - Progressive share button; charter ballot demo persists in `sessionStorage` only.
 - Print control; themed scrollbars; share status auto-clears for AT noise reduction.
+- Glossary section + deep links for co-rulers (`#duchess`, `#bombardier`).
