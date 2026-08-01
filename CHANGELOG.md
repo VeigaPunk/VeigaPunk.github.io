@@ -12,3 +12,4 @@ Unofficial Plazir-15 fan codex. Dates are ship days on `main`.
 - A11y: skip link, mobile nav focus trap, hash focus, contrast preferences.
 - No third-party font CDN; system type stacks only.
 - Ops: `scripts/smoke.sh`, `scripts/deploy.sh`, `.well-known/security.txt`.
+- Schema.org `@graph` (WebSite, Place, WebPage); `prefers-reduced-data` hides hero decoration.

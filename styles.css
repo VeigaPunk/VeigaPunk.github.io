@@ -469,10 +469,15 @@ body.nav-open {
 }
 
 .hero-tagline {
+  margin: 0 0 1.75rem;
+  max-width: 36rem;
+  font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+  font-weight: 300;
+  color: var(--text-muted);
   text-wrap: pretty;
 }
 
-/* Save data / reduced motion already handled — hide pure decoration when requested */
+/* Hide pure decoration when the user requests reduced data */
 @media (prefers-reduced-data: reduce) {
   .hero-bg,
   .hero-orb,
@@ -484,14 +489,6 @@ body.nav-open {
   body {
     background-image: none;
   }
-}
-
-.hero-tagline {
-  margin: 0 0 1.75rem;
-  max-width: 36rem;
-  font-size: clamp(1.05rem, 2.5vw, 1.25rem);
-  font-weight: 300;
-  color: var(--text-muted);
 }
 
 .hero-quote {

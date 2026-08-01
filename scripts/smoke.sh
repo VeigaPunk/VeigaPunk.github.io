@@ -38,6 +38,31 @@ else
   echo "OK  no Google Fonts CDN references"
 fi
 
+echo "== json-ld gate =="
+if python3 - <<'PY'
+import re, json, sys
+from pathlib import Path
+t = Path("index.html").read_text()
+m = re.search(r'<script type="application/ld\+json">\s*(\{.*?\})\s*</script>', t, re.S)
+if not m:
+    print("MISS json-ld block")
+    sys.exit(1)
+data = json.loads(m.group(1))
+graph = data.get("@graph") or [data]
+types = {n.get("@type") for n in graph if isinstance(n, dict)}
+need = {"WebSite", "Place", "WebPage"}
+missing = need - types
+if missing:
+    print("MISS types", missing)
+    sys.exit(1)
+print("OK  json-ld parses; types", sorted(types))
+PY
+then
+  :
+else
+  fail=1
+fi
+
 echo "== asset ref gate =="
 # Local relative href/src from HTML must exist on disk
 while IFS= read -r u; do
