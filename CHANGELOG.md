@@ -17,3 +17,4 @@ Unofficial Plazir-15 fan codex. Dates are ship days on `main`.
 - Progressive share button; charter ballot demo persists in `sessionStorage` only.
 - Print control; themed scrollbars; share status auto-clears for AT noise reduction.
 - Glossary section + deep links for co-rulers (`#duchess`, `#bombardier`).
+- Glossary as schema.org `DefinedTermSet`; denser mid-width nav; scroll-margin anchors.

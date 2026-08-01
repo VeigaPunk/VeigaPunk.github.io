@@ -100,12 +100,20 @@ if not m:
 data = json.loads(m.group(1))
 graph = data.get("@graph") or [data]
 types = {n.get("@type") for n in graph if isinstance(n, dict)}
-need = {"WebSite", "Place", "WebPage"}
+need = {"WebSite", "Place", "WebPage", "DefinedTermSet"}
 missing = need - types
 if missing:
     print("MISS types", missing)
     sys.exit(1)
-print("OK  json-ld parses; types", sorted(types))
+# Count defined terms if present
+terms = 0
+for n in graph:
+    if isinstance(n, dict) and n.get("@type") == "DefinedTermSet":
+        terms = len(n.get("hasDefinedTerm") or [])
+if terms < 6:
+    print("MISS glossary terms, got", terms)
+    sys.exit(1)
+print("OK  json-ld parses; types", sorted(types), "; terms", terms)
 PY
 then
   :
