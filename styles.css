@@ -43,6 +43,23 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--header-h) + 0.75rem);
+  scrollbar-color: var(--teal-dim) var(--bg-deep);
+  scrollbar-width: thin;
+}
+
+html::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+html::-webkit-scrollbar-track {
+  background: var(--bg-deep);
+}
+
+html::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--teal-dim), var(--green-deep));
+  border-radius: 999px;
+  border: 2px solid var(--bg-deep);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -100,7 +117,10 @@ img {
   .hero-actions,
   .hero-stats,
   .ballot,
-  .skip-link {
+  .skip-link,
+  #share-site,
+  #print-site,
+  .share-status {
     display: none !important;
   }
 

@@ -280,6 +280,17 @@
   /* Progressive share: Web Share API or clipboard */
   var shareBtn = document.getElementById("share-site");
   var shareStatus = document.getElementById("share-status");
+  var shareClearTimer = 0;
+  function announceShare(msg) {
+    if (!shareStatus) return;
+    shareStatus.hidden = false;
+    shareStatus.textContent = msg;
+    window.clearTimeout(shareClearTimer);
+    shareClearTimer = window.setTimeout(function () {
+      shareStatus.hidden = true;
+      shareStatus.textContent = "";
+    }, 4000);
+  }
   if (shareBtn) {
     var canShare =
       typeof navigator.share === "function" ||
@@ -292,44 +303,45 @@
           text: "Unofficial fan documentation for Plazir-15 — Outer Rim domed paradise.",
           url: "https://veigapunk.github.io/",
         };
-        var done = function (msg) {
-          if (!shareStatus) return;
-          shareStatus.hidden = false;
-          shareStatus.textContent = msg;
-        };
         if (typeof navigator.share === "function") {
           navigator.share(payload).then(
             function () {
-              done("Shared via system sheet.");
+              announceShare("Shared via system sheet.");
             },
             function () {
-              /* user cancel or failure — try clipboard */
               if (navigator.clipboard && navigator.clipboard.writeText) {
                 navigator.clipboard.writeText(payload.url).then(
                   function () {
-                    done("Link copied to clipboard.");
+                    announceShare("Link copied to clipboard.");
                   },
                   function () {
-                    done("Share cancelled.");
+                    announceShare("Share cancelled.");
                   }
                 );
               } else {
-                done("Share cancelled.");
+                announceShare("Share cancelled.");
               }
             }
           );
         } else if (navigator.clipboard && navigator.clipboard.writeText) {
           navigator.clipboard.writeText(payload.url).then(
             function () {
-              done("Link copied to clipboard.");
+              announceShare("Link copied to clipboard.");
             },
             function () {
-              done("Could not copy link.");
+              announceShare("Could not copy link.");
             }
           );
         }
       });
     }
+  }
+
+  var printBtn = document.getElementById("print-site");
+  if (printBtn) {
+    printBtn.addEventListener("click", function () {
+      window.print();
+    });
   }
 
   /* Year stamp in footer if present */

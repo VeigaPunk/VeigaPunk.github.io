@@ -55,6 +55,7 @@ PY
 
 need=(
   index.html styles.css main.js README.md LICENSE 404.html humans.txt
+  sitemap.xml robots.txt site.webmanifest CHANGELOG.md
   assets/dome.svg assets/droid.svg assets/hyperloop.svg assets/ballot.svg
   assets/landing.svg assets/favicon.svg assets/og-card.svg
   .well-known/security.txt

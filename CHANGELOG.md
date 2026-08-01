@@ -15,3 +15,4 @@ Unofficial Plazir-15 fan codex. Dates are ship days on `main`.
 - Schema.org `@graph` (WebSite, Place, WebPage); `prefers-reduced-data` hides hero decoration.
 - CI smoke workflow (no Pages dependency); portable smoke without requiring `rg`.
 - Progressive share button; charter ballot demo persists in `sessionStorage` only.
+- Print control; themed scrollbars; share status auto-clears for AT noise reduction.
