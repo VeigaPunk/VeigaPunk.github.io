@@ -550,6 +550,16 @@ body.nav-open {
 /* Sections */
 .section {
   padding: 4.5rem 1.25rem;
+  /* Defer offscreen layout work (supported browsers) */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 36rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section {
+    content-visibility: visible;
+    contain-intrinsic-size: none;
+  }
 }
 
 .section--tint {

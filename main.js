@@ -111,9 +111,10 @@
       setNavOpen(false);
     });
 
+    var resizeTimer = 0;
     window.addEventListener("resize", function () {
-      window.clearTimeout(window.__plazirNavResize);
-      window.__plazirNavResize = window.setTimeout(syncNavForViewport, 120);
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(syncNavForViewport, 120);
     });
   }
 

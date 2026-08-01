@@ -87,3 +87,13 @@ Wookieepedia articles are generally available under Creative Commons Attribution
 - Mobile nav: `aria-expanded` / `aria-hidden` / `tabindex` sync, Escape + outside click, Tab cycle, body scroll lock
 - `prefers-reduced-motion` and `prefers-contrast: more` supported
 - Decorative images `alt=""`; brand name exposed via `aria-label` on home link
+
+## Mission status (godspeed)
+
+| Item | State |
+|------|--------|
+| Fan codex content + dual sources | Done |
+| Live host (user Pages) | https://veigapunk.github.io/ |
+| Dual remote deploy | `./scripts/deploy.sh` |
+| Local smoke | `./scripts/smoke.sh` |
+| Project Pages Actions | Optional; Settings enable still required |

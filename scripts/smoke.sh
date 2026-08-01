@@ -7,7 +7,7 @@ fail=0
 need=(
   index.html styles.css main.js README.md LICENSE 404.html humans.txt
   assets/dome.svg assets/droid.svg assets/hyperloop.svg assets/ballot.svg
-  assets/favicon.svg assets/og-card.svg
+  assets/landing.svg assets/favicon.svg assets/og-card.svg
   .well-known/security.txt
 )
 
