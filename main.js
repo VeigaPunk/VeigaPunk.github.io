@@ -105,6 +105,7 @@
         result.classList.add("is-error");
         result.textContent =
           "No selection recorded. Choose Aye, Nay, or Abstain before casting your demo ballot.";
+        result.focus();
         return;
       }
 
@@ -119,6 +120,7 @@
         " · " +
         stamp +
         ". (Local only — nothing was transmitted.)";
+      result.focus();
     });
 
     form.addEventListener("reset", function () {
@@ -128,5 +130,11 @@
         result.classList.remove("is-error");
       }, 0);
     });
+  }
+
+  /* Year stamp in footer if present */
+  var yearEl = document.getElementById("footer-year");
+  if (yearEl) {
+    yearEl.textContent = String(new Date().getFullYear());
   }
 })();

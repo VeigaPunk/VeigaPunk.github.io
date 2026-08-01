@@ -80,6 +80,54 @@ img {
   display: block;
 }
 
+::selection {
+  background: rgba(126, 184, 150, 0.35);
+  color: var(--chrome-bright);
+}
+
+/* Print: readable fan codex for offline notes */
+@media print {
+  body {
+    background: #fff !important;
+    color: #111 !important;
+    font-size: 11pt;
+  }
+
+  .site-header,
+  .nav-toggle,
+  .hero-bg,
+  .hero-actions,
+  .ballot,
+  .skip-link {
+    display: none !important;
+  }
+
+  a {
+    color: #000 !important;
+    text-decoration: underline;
+  }
+
+  .section,
+  .hero {
+    padding: 0.75rem 0;
+    break-inside: avoid;
+  }
+
+  .card,
+  .source-card,
+  .charter-panel,
+  .table-wrap {
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+    background: #fff !important;
+  }
+
+  .site-footer {
+    border-top: 1px solid #999;
+    color: #333 !important;
+  }
+}
+
 a {
   color: var(--teal);
   text-decoration-thickness: 1px;
@@ -1034,4 +1082,25 @@ a:hover {
 
 .footer-meta a:hover {
   color: var(--teal);
+}
+
+.footer-year {
+  color: var(--text-faint);
+}
+
+/* Ballot result focus for SR / keyboard after submit */
+.ballot-result:focus {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* Slightly larger tap targets on coarse pointers */
+@media (pointer: coarse) {
+  .nav-list a {
+    padding: 0.85rem 1rem;
+  }
+
+  .btn {
+    min-height: 2.75rem;
+  }
 }
