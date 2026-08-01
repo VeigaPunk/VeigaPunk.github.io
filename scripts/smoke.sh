@@ -64,6 +64,35 @@ if [[ "${SMOKE_LIVE:-}" == "1" ]]; then
     echo "FAIL live / -> $code"
     fail=1
   fi
+  og=$(curl -s -o /dev/null -w '%{http_code}' https://veigapunk.github.io/assets/og-card.svg || echo 000)
+  if [[ "$og" == "200" ]]; then
+    echo "OK  live /assets/og-card.svg -> $og"
+  else
+    echo "FAIL live og-card -> $og"
+    fail=1
+  fi
+fi
+
+if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+  echo "== remote sync (optional remotes) =="
+  head=$(git rev-parse HEAD)
+  echo "OK  HEAD $head"
+  for remote in origin pages-user; do
+    if git remote get-url "$remote" >/dev/null 2>&1; then
+      # Prefer local remote-tracking ref; fall back to ls-remote
+      ref=$(git rev-parse --verify "${remote}/main" 2>/dev/null || true)
+      if [[ -z "$ref" ]]; then
+        ref=$(git ls-remote --heads "$remote" main 2>/dev/null | awk '{print $1}')
+      fi
+      if [[ -n "$ref" && "$ref" == "$head" ]]; then
+        echo "OK  $remote/main == HEAD"
+      elif [[ -n "$ref" ]]; then
+        echo "WARN $remote/main=$ref (diverged from HEAD; run ./scripts/deploy.sh)"
+      else
+        echo "WARN $remote: could not resolve main"
+      fi
+    fi
+  done
 fi
 
 if [[ "$fail" -ne 0 ]]; then

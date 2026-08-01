@@ -10,13 +10,16 @@ Unofficial, non-commercial fan documentation site for the *Star Wars* canon plan
 | Source repo | https://github.com/VeigaPunk/plazir-15-site |
 | User-site mirror repo | https://github.com/VeigaPunk/VeigaPunk.github.io |
 
-`main` is pushed to **both** remotes. The `username.github.io` repo is the unblock path when project-site Actions Pages needs a one-time Settings enable.
+`main` is pushed to **both** remotes (`origin`, `pages-user`). Primary public host is the user site.
 
-### Project-site Pages (optional mirror)
+### Project-site Pages (optional / blocked until Settings)
 
-`.github/workflows/pages.yml` deploys project Pages at  
-https://veigapunk.github.io/plazir-15-site/ after **Settings → Pages → Source → GitHub Actions**.  
-See [Issue #1](https://github.com/VeigaPunk/plazir-15-site/issues/1).
+Project Actions Pages at https://veigapunk.github.io/plazir-15-site/ remains **optional**.  
+Workflow is **manual** (`.github/workflows/pages.yml` → `workflow_dispatch` only) until:
+
+**Settings → Pages → Source → GitHub Actions**
+
+API enable was blocked (invalid/expired GitHub CLI PAT in 1Password). Non-blocking while user site is live.
 
 ## Open locally
 
