@@ -97,12 +97,15 @@ if [[ "${SMOKE_LIVE:-}" == "1" ]]; then
   else
     echo "OK  live has no Google Fonts CDN"
   fi
-  if curl -s "${base}/main.js" | rg -q 'focusHashTarget'; then
-    echo "OK  live main.js has hash focus"
-  else
-    echo "FAIL live main.js missing hash focus"
-    fail=1
-  fi
+  body_js=$(curl -s "${base}/main.js")
+  for needle in focusHashTarget is-scrolled requestAnimationFrame; do
+    if echo "$body_js" | rg -q --fixed-strings "$needle"; then
+      echo "OK  live main.js has $needle"
+    else
+      echo "FAIL live main.js missing $needle"
+      fail=1
+    fi
+  done
 fi
 
 if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then

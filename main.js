@@ -248,10 +248,17 @@
   /* Elevate sticky header after scroll for separation from content */
   var header = document.querySelector(".site-header");
   if (header) {
-    var onScroll = function () {
+    var scrollQueued = false;
+    var updateHeader = function () {
+      scrollQueued = false;
       header.classList.toggle("is-scrolled", window.scrollY > 10);
     };
-    onScroll();
+    var onScroll = function () {
+      if (scrollQueued) return;
+      scrollQueued = true;
+      window.requestAnimationFrame(updateHeader);
+    };
+    updateHeader();
     window.addEventListener("scroll", onScroll, { passive: true });
   }
 })();

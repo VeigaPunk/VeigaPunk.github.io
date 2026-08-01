@@ -97,3 +97,5 @@ Wookieepedia articles are generally available under Creative Commons Attribution
 | Dual remote deploy | `./scripts/deploy.sh` |
 | Local smoke | `./scripts/smoke.sh` |
 | Project Pages Actions | Optional; Settings enable still required |
+
+See [CHANGELOG.md](CHANGELOG.md) for ship history.
