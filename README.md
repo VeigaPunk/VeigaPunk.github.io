@@ -5,8 +5,17 @@ Unofficial, non-commercial fan documentation site for the *Star Wars* canon plan
 ## Live
 
 - **GitHub repo:** https://github.com/VeigaPunk/plazir-15-site  
-- **GitHub Pages (after Actions deploy):** https://veigapunk.github.io/plazir-15-site/  
-- Deploy: push to `main` runs `.github/workflows/pages.yml` (GitHub Pages via Actions).
+- **GitHub Pages URL (target):** https://veigapunk.github.io/plazir-15-site/  
+- Deploy workflow: `.github/workflows/pages.yml` (runs on push to `main`)
+
+### One-time Pages enable (required)
+
+The first Actions deploy **failed at “Configure Pages”** until Pages is turned on:
+
+1. Repo **Settings → Pages → Build and deployment → Source → GitHub Actions**
+2. Re-run [workflow run #1](https://github.com/VeigaPunk/plazir-15-site/actions/runs/30722566163) or push any commit to `main`
+
+Tracked: [Issue #1](https://github.com/VeigaPunk/plazir-15-site/issues/1)
 
 ## Open locally
 
