@@ -11,6 +11,7 @@ The Mandalorian Chapter 22: Guns for Hire — first appearance
 /* SITE */
 Standards: HTML5, CSS3, progressive enhancement
 Components: single-page static fan codex
+Fonts: system UI stacks only (no Google Fonts / no third-party font CDN)
 Doctype: HTML5
 Language: English
 

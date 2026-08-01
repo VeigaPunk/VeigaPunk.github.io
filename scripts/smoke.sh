@@ -30,6 +30,13 @@ for needle in "Guns for Hire" "Wookieepedia" "Grokipedia" "Plazir-15" "N-2"; do
   fi
 done
 
+if rg -q 'fonts\.googleapis|fonts\.gstatic' index.html styles.css; then
+  echo "FAIL third-party font CDN still referenced"
+  fail=1
+else
+  echo "OK  no Google Fonts CDN references"
+fi
+
 if command -v python3 >/dev/null 2>&1; then
   echo "== local server probe =="
   # Bind ephemeral port so we never collide with a long-lived :8765 server.
