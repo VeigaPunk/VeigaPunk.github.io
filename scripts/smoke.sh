@@ -81,18 +81,26 @@ fi
 
 if [[ "${SMOKE_LIVE:-}" == "1" ]]; then
   echo "== live probe =="
-  code=$(curl -s -o /dev/null -w '%{http_code}' https://veigapunk.github.io/ || echo 000)
-  if [[ "$code" == "200" ]]; then
-    echo "OK  live / -> $code"
-  else
-    echo "FAIL live / -> $code"
+  base="https://veigapunk.github.io"
+  for path in / /styles.css /main.js /assets/og-card.svg /404.html /humans.txt /.well-known/security.txt; do
+    code=$(curl -s -o /dev/null -w '%{http_code}' "${base}${path}" || echo 000)
+    if [[ "$code" == "200" ]]; then
+      echo "OK  live $path -> $code"
+    else
+      echo "FAIL live $path -> $code"
+      fail=1
+    fi
+  done
+  if curl -s "${base}/" | rg -q 'fonts\.googleapis|fonts\.gstatic'; then
+    echo "FAIL live still references Google Fonts CDN"
     fail=1
-  fi
-  og=$(curl -s -o /dev/null -w '%{http_code}' https://veigapunk.github.io/assets/og-card.svg || echo 000)
-  if [[ "$og" == "200" ]]; then
-    echo "OK  live /assets/og-card.svg -> $og"
   else
-    echo "FAIL live og-card -> $og"
+    echo "OK  live has no Google Fonts CDN"
+  fi
+  if curl -s "${base}/main.js" | rg -q 'focusHashTarget'; then
+    echo "OK  live main.js has hash focus"
+  else
+    echo "FAIL live main.js missing hash focus"
     fail=1
   fi
 fi
