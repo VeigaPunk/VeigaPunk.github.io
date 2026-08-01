@@ -4,18 +4,19 @@ Unofficial, non-commercial fan documentation site for the *Star Wars* canon plan
 
 ## Live
 
-- **GitHub repo:** https://github.com/VeigaPunk/plazir-15-site  
-- **GitHub Pages URL (target):** https://veigapunk.github.io/plazir-15-site/  
-- Deploy workflow: `.github/workflows/pages.yml` (runs on push to `main`)
+| Host | URL |
+|------|-----|
+| **Primary (user GitHub Pages)** | https://veigapunk.github.io/ |
+| Source repo | https://github.com/VeigaPunk/plazir-15-site |
+| User-site mirror repo | https://github.com/VeigaPunk/VeigaPunk.github.io |
 
-### One-time Pages enable (required)
+`main` is pushed to **both** remotes. The `username.github.io` repo is the unblock path when project-site Actions Pages needs a one-time Settings enable.
 
-The first Actions deploy **failed at “Configure Pages”** until Pages is turned on:
+### Project-site Pages (optional mirror)
 
-1. Repo **Settings → Pages → Build and deployment → Source → GitHub Actions**
-2. Re-run [workflow run #1](https://github.com/VeigaPunk/plazir-15-site/actions/runs/30722566163) or push any commit to `main`
-
-Tracked: [Issue #1](https://github.com/VeigaPunk/plazir-15-site/issues/1)
+`.github/workflows/pages.yml` deploys project Pages at  
+https://veigapunk.github.io/plazir-15-site/ after **Settings → Pages → Source → GitHub Actions**.  
+See [Issue #1](https://github.com/VeigaPunk/plazir-15-site/issues/1).
 
 ## Open locally
 

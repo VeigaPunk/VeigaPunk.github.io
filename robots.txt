@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Prefer canonical GitHub Pages host once live
-Sitemap: https://veigapunk.github.io/plazir-15-site/sitemap.xml
+Sitemap: https://veigapunk.github.io/sitemap.xml
