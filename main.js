@@ -367,4 +367,16 @@
     updateHeader();
     window.addEventListener("scroll", onScroll, { passive: true });
   }
+
+  /* Offline shell: register SW only on the live user-Pages host */
+  if (
+    "serviceWorker" in navigator &&
+    window.location.hostname === "veigapunk.github.io"
+  ) {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("./sw.js").catch(function () {
+        /* non-fatal */
+      });
+    });
+  }
 })();

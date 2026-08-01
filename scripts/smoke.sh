@@ -54,7 +54,7 @@ PY
 }
 
 need=(
-  index.html styles.css main.js README.md LICENSE 404.html humans.txt
+  index.html styles.css main.js sw.js README.md LICENSE 404.html humans.txt
   sitemap.xml robots.txt site.webmanifest CHANGELOG.md
   assets/dome.svg assets/droid.svg assets/hyperloop.svg assets/ballot.svg
   assets/landing.svg assets/favicon.svg assets/og-card.svg
@@ -80,6 +80,13 @@ for needle in "Guns for Hire" "Wookieepedia" "Grokipedia" "Plazir-15" "N-2" "Glo
     fail=1
   fi
 done
+
+if contains "serviceWorker" main.js && contains "plazir15-v1" sw.js; then
+  echo "OK  service worker wiring"
+else
+  echo "MISS service worker wiring"
+  fail=1
+fi
 
 if matches_re 'fonts\.googleapis|fonts\.gstatic' index.html styles.css; then
   echo "FAIL third-party font CDN still referenced"

@@ -18,3 +18,4 @@ Unofficial Plazir-15 fan codex. Dates are ship days on `main`.
 - Print control; themed scrollbars; share status auto-clears for AT noise reduction.
 - Glossary section + deep links for co-rulers (`#duchess`, `#bombardier`).
 - Glossary as schema.org `DefinedTermSet`; denser mid-width nav; scroll-margin anchors.
+- Production-only service worker (`sw.js`) for offline shell after first visit.

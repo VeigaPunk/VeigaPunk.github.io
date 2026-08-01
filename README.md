@@ -99,5 +99,8 @@ Wookieepedia articles are generally available under Creative Commons Attribution
 | Dual remote deploy | `./scripts/deploy.sh` |
 | Local smoke | `./scripts/smoke.sh` |
 | Project Pages Actions | Optional; Settings enable still required |
+| Offline shell | `sw.js` registers only on `veigapunk.github.io` |
 
 See [CHANGELOG.md](CHANGELOG.md) for ship history.
+
+After material asset changes, bump the `CACHE` string in `sw.js` so clients refresh the offline shell.

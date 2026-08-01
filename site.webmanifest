@@ -3,10 +3,12 @@
   "short_name": "Plazir-15",
   "description": "Unofficial fan documentation for the Outer Rim planet Plazir-15.",
   "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#0c1a1f",
   "theme_color": "#0c1a1f",
   "lang": "en",
+  "categories": ["entertainment", "education"],
   "icons": [
     {
       "src": "assets/favicon.svg",
