@@ -1,6 +1,6 @@
 /* Plazir-15 Fan Codex — offline shell (GitHub Pages only). */
 /* Bump CACHE when shipping material asset changes. */
-var CACHE = "plazir15-v2";
+var CACHE = "plazir15-v3";
 var PRECACHE = [
   "./",
   "./index.html",
@@ -29,6 +29,15 @@ function precacheAll(cache) {
       });
     })
   );
+}
+
+function matchFirst(cache, urls) {
+  return urls.reduce(function (chain, url) {
+    return chain.then(function (res) {
+      if (res) return res;
+      return cache.match(url);
+    });
+  }, Promise.resolve(null));
 }
 
 self.addEventListener("install", function (event) {
@@ -85,13 +94,13 @@ self.addEventListener("fetch", function (event) {
           return cache.match(req).then(function (cached) {
             if (cached) return cached;
             if (isNavigation(req)) {
-              return (
-                cache.match("./index.html") ||
-                cache.match("./") ||
-                cache.match("./404.html")
-              );
+              return matchFirst(cache, [
+                "./index.html",
+                "./",
+                "./404.html",
+              ]);
             }
-            return cached;
+            return undefined;
           });
         });
     })

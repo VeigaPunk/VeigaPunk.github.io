@@ -81,7 +81,7 @@ for needle in "Guns for Hire" "Wookieepedia" "Grokipedia" "Plazir-15" "N-2" "Glo
   fi
 done
 
-if contains "serviceWorker" main.js && contains "plazir15-v2" sw.js && contains "net-banner" index.html; then
+if contains "serviceWorker" main.js && contains "plazir15-v3" sw.js && contains "matchFirst" sw.js && contains "net-banner" index.html; then
   echo "OK  service worker + offline banner wiring"
 else
   echo "MISS service worker / offline banner wiring"

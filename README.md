@@ -103,4 +103,4 @@ Wookieepedia articles are generally available under Creative Commons Attribution
 
 See [CHANGELOG.md](CHANGELOG.md) for ship history.
 
-After material asset changes, bump the `CACHE` string in `sw.js` (currently `plazir15-v2`) so clients refresh the offline shell. Precache is resilient (one missing URL does not abort install).
+After material asset changes, bump the `CACHE` string in `sw.js` (currently `plazir15-v3`) so clients refresh the offline shell. Precache is resilient (one missing URL does not abort install). Offline navigations use sequential `cache.match` fallbacks (not Promise `||`).
