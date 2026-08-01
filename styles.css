@@ -209,6 +209,29 @@ a:hover {
   outline-offset: 3px;
 }
 
+.net-banner {
+  position: sticky;
+  top: 0;
+  z-index: 110;
+  margin: 0;
+  padding: 0.55rem 1.25rem;
+  text-align: center;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--chrome-bright);
+  background: linear-gradient(90deg, rgba(61, 107, 85, 0.95), rgba(58, 122, 118, 0.95));
+  border-bottom: 1px solid rgba(126, 184, 150, 0.35);
+}
+
+.net-banner[hidden] {
+  display: none !important;
+}
+
+/* When offline banner is visible under sticky header, keep header below it */
+body:has(.net-banner:not([hidden])) .site-header {
+  top: 0;
+}
+
 /* Mobile menu open: prevent body scroll */
 body.nav-open {
   overflow: hidden;

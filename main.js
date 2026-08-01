@@ -379,4 +379,15 @@
       });
     });
   }
+
+  /* Online / offline cue (works with or without SW) */
+  var netBanner = document.getElementById("net-banner");
+  function syncNetBanner() {
+    if (!netBanner) return;
+    var offline = typeof navigator.onLine === "boolean" && !navigator.onLine;
+    netBanner.hidden = !offline;
+  }
+  syncNetBanner();
+  window.addEventListener("online", syncNetBanner);
+  window.addEventListener("offline", syncNetBanner);
 })();

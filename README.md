@@ -103,4 +103,4 @@ Wookieepedia articles are generally available under Creative Commons Attribution
 
 See [CHANGELOG.md](CHANGELOG.md) for ship history.
 
-After material asset changes, bump the `CACHE` string in `sw.js` so clients refresh the offline shell.
+After material asset changes, bump the `CACHE` string in `sw.js` (currently `plazir15-v2`) so clients refresh the offline shell. Precache is resilient (one missing URL does not abort install).
