@@ -465,6 +465,25 @@ body.nav-open {
   letter-spacing: 0.02em;
   color: var(--chrome-bright);
   text-shadow: 0 2px 40px rgba(0, 0, 0, 0.4);
+  text-wrap: balance;
+}
+
+.hero-tagline {
+  text-wrap: pretty;
+}
+
+/* Save data / reduced motion already handled — hide pure decoration when requested */
+@media (prefers-reduced-data: reduce) {
+  .hero-bg,
+  .hero-orb,
+  .hero-grid,
+  .hero-horizon {
+    display: none !important;
+  }
+
+  body {
+    background-image: none;
+  }
 }
 
 .hero-tagline {

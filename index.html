@@ -35,30 +35,51 @@
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Plazir-15 Fan Codex",
-    "url": "https://veigapunk.github.io/",
-    "description": "Unofficial non-commercial fan documentation for the Star Wars planet Plazir-15 (The Mandalorian Chapter 22: Guns for Hire).",
-    "inLanguage": "en",
-    "isAccessibleForFree": true,
-    "about": {
-      "@type": "Place",
-      "name": "Plazir-15",
-      "description": "Terrestrial Outer Rim planet with bio-domes, elective monarchy, and direct democracy."
-    },
-    "citation": [
+    "@graph": [
       {
-        "@type": "CreativeWork",
-        "name": "Plazir-15 — Wookieepedia",
-        "url": "https://starwars.fandom.com/wiki/Plazir-15"
+        "@type": "WebSite",
+        "@id": "https://veigapunk.github.io/#website",
+        "name": "Plazir-15 Fan Codex",
+        "url": "https://veigapunk.github.io/",
+        "description": "Unofficial non-commercial fan documentation for the Star Wars planet Plazir-15 (The Mandalorian Chapter 22: Guns for Hire). Not affiliated with Lucasfilm or Disney.",
+        "inLanguage": "en",
+        "isAccessibleForFree": true,
+        "about": { "@id": "https://veigapunk.github.io/#plazir-15" },
+        "citation": [
+          {
+            "@type": "CreativeWork",
+            "name": "Plazir-15 — Wookieepedia",
+            "url": "https://starwars.fandom.com/wiki/Plazir-15",
+            "license": "https://creativecommons.org/licenses/by-sa/3.0/"
+          },
+          {
+            "@type": "CreativeWork",
+            "name": "The Mandalorian Season 3 — Grokipedia",
+            "url": "https://grokipedia.com/page/the_mandalorian_season_3"
+          }
+        ]
       },
       {
-        "@type": "CreativeWork",
-        "name": "The Mandalorian Season 3 — Grokipedia",
-        "url": "https://grokipedia.com/page/the_mandalorian_season_3"
+        "@type": "Place",
+        "@id": "https://veigapunk.github.io/#plazir-15",
+        "name": "Plazir-15",
+        "description": "Terrestrial Outer Rim / New Territories planet (grid N-2) with bio-domes, elective monarchy, and direct democracy.",
+        "additionalProperty": [
+          { "@type": "PropertyValue", "name": "grid", "value": "N-2" },
+          { "@type": "PropertyValue", "name": "system", "value": "Plazir system" }
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://veigapunk.github.io/#webpage",
+        "url": "https://veigapunk.github.io/",
+        "name": "Plazir-15 — Domed Paradise of the Outer Rim | Fan Codex",
+        "isPartOf": { "@id": "https://veigapunk.github.io/#website" },
+        "about": { "@id": "https://veigapunk.github.io/#plazir-15" },
+        "inLanguage": "en",
+        "license": "https://github.com/VeigaPunk/plazir-15-site/blob/main/LICENSE"
       }
-    ],
-    "disclaimer": "Unofficial fan site. Not affiliated with Lucasfilm or Disney."
+    ]
   }
   </script>
 </head>
@@ -469,6 +490,8 @@
         <a href="https://veigapunk.github.io/">Live site</a>
         ·
         <a href="https://github.com/VeigaPunk/plazir-15-site">Source</a>
+        ·
+        <a href="https://github.com/VeigaPunk/plazir-15-site/blob/main/LICENSE">License</a>
         ·
         <a href="#top">Back to top</a>
         ·
