@@ -64,10 +64,18 @@
   <header class="site-header" id="top">
     <div class="header-inner">
       <a class="brand" href="#top" aria-label="Plazir-15 home">
-        <img src="assets/dome.svg" alt="" width="28" height="28" class="brand-icon" />
-        <span class="brand-text">Plazir-15</span>
+        <img src="assets/dome.svg" alt="" width="28" height="28" class="brand-icon" decoding="async" />
+        <span class="brand-text" aria-hidden="true">Plazir-15</span>
       </a>
-      <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+      <button
+        type="button"
+        class="nav-toggle"
+        id="nav-toggle"
+        aria-expanded="false"
+        aria-controls="site-nav"
+        aria-haspopup="true"
+        aria-label="Open menu"
+      >
         <span class="nav-toggle-bar" aria-hidden="true"></span>
         <span class="nav-toggle-bar" aria-hidden="true"></span>
         <span class="nav-toggle-bar" aria-hidden="true"></span>
@@ -86,7 +94,7 @@
     </div>
   </header>
 
-  <main id="main">
+  <main id="main" tabindex="-1">
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-bg" aria-hidden="true">
         <div class="hero-orb hero-orb--a"></div>
@@ -337,7 +345,15 @@
             <button type="submit" class="btn btn-primary">Cast demo ballot</button>
             <button type="reset" class="btn btn-ghost">Clear</button>
           </div>
-          <p class="ballot-result" id="ballot-result" role="status" aria-live="polite" tabindex="-1" hidden></p>
+          <p
+            class="ballot-result"
+            id="ballot-result"
+            role="status"
+            aria-live="polite"
+            aria-atomic="true"
+            tabindex="-1"
+            hidden
+          ></p>
         </form>
       </div>
     </section>

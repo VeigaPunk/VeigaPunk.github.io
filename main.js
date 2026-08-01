@@ -5,21 +5,67 @@
 (function () {
   "use strict";
 
-  const navToggle = document.getElementById("nav-toggle");
-  const siteNav = document.getElementById("site-nav");
-  const navLinks = siteNav ? siteNav.querySelectorAll("a[href^='#']") : [];
+  var navToggle = document.getElementById("nav-toggle");
+  var siteNav = document.getElementById("site-nav");
+  var navLinks = siteNav ? siteNav.querySelectorAll("a[href^='#']") : [];
+  var mainEl = document.getElementById("main");
 
-  function setNavOpen(open) {
+  function isMobileNav() {
+    return navToggle && window.getComputedStyle(navToggle).display !== "none";
+  }
+
+  function setNavOpen(open, opts) {
+    opts = opts || {};
     if (!navToggle || !siteNav) return;
+
     navToggle.setAttribute("aria-expanded", open ? "true" : "false");
     navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
     siteNav.classList.toggle("is-open", open);
+    document.body.classList.toggle("nav-open", open && isMobileNav());
+
+    if (isMobileNav()) {
+      siteNav.setAttribute("aria-hidden", open ? "false" : "true");
+      navLinks.forEach(function (link) {
+        if (open) link.removeAttribute("tabindex");
+        else link.setAttribute("tabindex", "-1");
+      });
+    } else {
+      siteNav.removeAttribute("aria-hidden");
+      navLinks.forEach(function (link) {
+        link.removeAttribute("tabindex");
+      });
+    }
+
+    if (opts.focus === "first" && open && navLinks[0]) {
+      navLinks[0].focus();
+    } else if (opts.focus === "toggle" && !open) {
+      navToggle.focus();
+    }
+  }
+
+  function syncNavForViewport() {
+    if (!navToggle || !siteNav) return;
+    if (!isMobileNav()) {
+      setNavOpen(false);
+      siteNav.removeAttribute("aria-hidden");
+      navLinks.forEach(function (link) {
+        link.removeAttribute("tabindex");
+      });
+      document.body.classList.remove("nav-open");
+    } else if (navToggle.getAttribute("aria-expanded") !== "true") {
+      siteNav.setAttribute("aria-hidden", "true");
+      navLinks.forEach(function (link) {
+        link.setAttribute("tabindex", "-1");
+      });
+    }
   }
 
   if (navToggle && siteNav) {
+    syncNavForViewport();
+
     navToggle.addEventListener("click", function () {
-      const open = navToggle.getAttribute("aria-expanded") !== "true";
-      setNavOpen(open);
+      var open = navToggle.getAttribute("aria-expanded") !== "true";
+      setNavOpen(open, { focus: open ? "first" : "toggle" });
     });
 
     navLinks.forEach(function (link) {
@@ -29,7 +75,33 @@
     });
 
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") setNavOpen(false);
+      if (e.key === "Escape" && navToggle.getAttribute("aria-expanded") === "true") {
+        e.preventDefault();
+        setNavOpen(false, { focus: "toggle" });
+        return;
+      }
+
+      /* Simple focus cycle inside open mobile menu */
+      if (
+        e.key !== "Tab" ||
+        navToggle.getAttribute("aria-expanded") !== "true" ||
+        !isMobileNav()
+      ) {
+        return;
+      }
+
+      var focusables = [navToggle].concat(Array.prototype.slice.call(navLinks));
+      var first = focusables[0];
+      var last = focusables[focusables.length - 1];
+      var active = document.activeElement;
+
+      if (e.shiftKey && active === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && active === last) {
+        e.preventDefault();
+        first.focus();
+      }
     });
 
     document.addEventListener("click", function (e) {
@@ -38,10 +110,25 @@
       if (siteNav.contains(t) || navToggle.contains(t)) return;
       setNavOpen(false);
     });
+
+    window.addEventListener("resize", function () {
+      window.clearTimeout(window.__plazirNavResize);
+      window.__plazirNavResize = window.setTimeout(syncNavForViewport, 120);
+    });
+  }
+
+  /* Skip link: ensure main receives keyboard focus */
+  var skip = document.querySelector(".skip-link");
+  if (skip && mainEl) {
+    skip.addEventListener("click", function () {
+      window.setTimeout(function () {
+        mainEl.focus({ preventScroll: false });
+      }, 0);
+    });
   }
 
   /* Highlight current section in nav (IntersectionObserver) */
-  const sectionIds = [
+  var sectionIds = [
     "astrography",
     "world",
     "government",
@@ -50,15 +137,15 @@
     "appearances",
     "sources",
   ];
-  const sections = sectionIds
+  var sections = sectionIds
     .map(function (id) {
       return document.getElementById(id);
     })
     .filter(Boolean);
 
-  const linkByHash = {};
+  var linkByHash = {};
   navLinks.forEach(function (a) {
-    const href = a.getAttribute("href");
+    var href = a.getAttribute("href");
     if (href && href.charAt(0) === "#") linkByHash[href.slice(1)] = a;
   });
 
@@ -69,12 +156,12 @@
   }
 
   if ("IntersectionObserver" in window && sections.length) {
-    const io = new IntersectionObserver(
+    var io = new IntersectionObserver(
       function (entries) {
         entries.forEach(function (entry) {
           if (!entry.isIntersecting) return;
           clearCurrent();
-          const link = linkByHash[entry.target.id];
+          var link = linkByHash[entry.target.id];
           if (link) link.setAttribute("aria-current", "true");
         });
       },
@@ -86,10 +173,10 @@
   }
 
   /* Charter ballot demo */
-  const form = document.getElementById("charter-ballot");
-  const result = document.getElementById("ballot-result");
+  var form = document.getElementById("charter-ballot");
+  var result = document.getElementById("ballot-result");
 
-  const labels = {
+  var labels = {
     aye: "Aye — measured expansion under charter safety review",
     nay: "Nay — retain capacity; prefer hyperloop redistribution",
     abstain: "Abstain — presence recorded without preference",
@@ -98,7 +185,7 @@
   if (form && result) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-      const selected = form.querySelector('input[name="vote"]:checked');
+      var selected = form.querySelector('input[name="vote"]:checked');
       result.hidden = false;
 
       if (!selected) {
@@ -110,7 +197,7 @@
       }
 
       result.classList.remove("is-error");
-      const stamp = new Date().toLocaleString(undefined, {
+      var stamp = new Date().toLocaleString(undefined, {
         dateStyle: "medium",
         timeStyle: "short",
       });

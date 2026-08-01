@@ -17,10 +17,10 @@
   --teal-dim: #3a7a76;
   --gold: #c9a96e;
   --gold-soft: rgba(201, 169, 110, 0.2);
-  --text: #e4eef2;
-  --text-muted: #9bb0b8;
-  --text-faint: #6d828c;
-  --focus: #8fd4c8;
+  --text: #e8f0f3;
+  --text-muted: #a8bcc4;
+  --text-faint: #7e949e;
+  --focus: #9ee0d4;
   --danger-soft: #c48a7a;
   --radius: 14px;
   --radius-sm: 8px;
@@ -148,6 +148,16 @@ a:hover {
   outline-offset: 3px;
 }
 
+/* Skip target: no outline noise until keyboard focus */
+#main:focus {
+  outline: none;
+}
+
+#main:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 4px;
+}
+
 .skip-link {
   position: absolute;
   left: 1rem;
@@ -159,10 +169,19 @@ a:hover {
   font-weight: 600;
   border-radius: var(--radius-sm);
   text-decoration: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
 }
 
-.skip-link:focus {
+.skip-link:focus,
+.skip-link:focus-visible {
   top: 0.75rem;
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+/* Mobile menu open: prevent body scroll */
+body.nav-open {
+  overflow: hidden;
 }
 
 .sr-only {
@@ -1202,4 +1221,42 @@ a:hover {
   .btn {
     min-height: 2.75rem;
   }
+}
+
+/* Higher contrast preference: push muted text and borders up */
+@media (prefers-contrast: more) {
+  :root {
+    --text: #f4fafb;
+    --text-muted: #d0dde2;
+    --text-faint: #b0c0c7;
+    --glass-border: rgba(220, 235, 240, 0.45);
+    --focus: #b8fff0;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+
+  .card,
+  .source-card,
+  .charter-panel,
+  .ballot,
+  .ruler-card,
+  .table-wrap {
+    border-width: 2px;
+  }
+}
+
+/* Content links: underline for affordance (nav pills stay clean) */
+.section a:not(.btn),
+.site-footer a,
+.species-lede a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+/* External-link hint slightly clearer for low vision */
+.ext-hint {
+  font-size: 0.85rem;
+  color: var(--text-muted);
 }

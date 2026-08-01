@@ -79,6 +79,8 @@ Wookieepedia articles are generally available under Creative Commons Attribution
 
 ## Accessibility notes
 
-- Skip link, semantic landmarks, keyboard focus styles
-- Mobile nav with `aria-expanded` / Escape to close
-- Ballot demo uses live region status updates
+- Skip link focuses `#main` (`tabindex="-1"`); keyboard focus rings on `:focus-visible`
+- Semantic landmarks, table `scope`, labeled radiogroup, ballot `aria-live` + `aria-atomic`
+- Mobile nav: `aria-expanded` / `aria-hidden` / `tabindex` sync, Escape + outside click, Tab cycle, body scroll lock
+- `prefers-reduced-motion` and `prefers-contrast: more` supported
+- Decorative images `alt=""`; brand name exposed via `aria-label` on home link
