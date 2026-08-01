@@ -42,6 +42,13 @@ python3 -m http.server 8765
 # pushes main → origin (plazir-15-site) and pages-user (VeigaPunk.github.io)
 ```
 
+**Smoke (local-first)**
+
+```bash
+./scripts/smoke.sh          # files + content + local HTTP
+SMOKE_LIVE=1 ./scripts/smoke.sh   # also hit https://veigapunk.github.io/
+```
+
 Files:
 
 | Path | Role |
