@@ -52,6 +52,8 @@ python3 -m http.server 8765
 SMOKE_LIVE=1 ./scripts/smoke.sh   # also hit https://veigapunk.github.io/
 ```
 
+CI runs the same local smoke on every push/PR (`.github/workflows/smoke.yml`).
+
 Files:
 
 | Path | Role |

@@ -1,8 +1,57 @@
 #!/usr/bin/env bash
 # Local-first smoke: required files + optional live URL check.
+# Portable: works with ripgrep (rg) or grep; needs python3 + curl for HTTP probes.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 fail=0
+
+contains() {
+  # contains <fixed-string> <file...>
+  local needle=$1
+  shift
+  if command -v rg >/dev/null 2>&1; then
+    rg -q --fixed-strings -- "$needle" "$@"
+  else
+    grep -F -q -- "$needle" "$@"
+  fi
+}
+
+matches_re() {
+  # matches_re <regex> <file...>
+  local re=$1
+  shift
+  if command -v rg >/dev/null 2>&1; then
+    rg -q -- "$re" "$@"
+  else
+    grep -E -q -- "$re" "$@"
+  fi
+}
+
+text_has() {
+  # text_has <fixed-string>  (reads stdin)
+  local needle=$1
+  if command -v rg >/dev/null 2>&1; then
+    rg -q --fixed-strings -- "$needle"
+  else
+    grep -F -q -- "$needle"
+  fi
+}
+
+list_local_refs() {
+  # Extract src/href values from HTML without requiring rg -o
+  python3 - <<'PY'
+import re
+from pathlib import Path
+paths = ["index.html", "404.html"]
+seen = set()
+for p in paths:
+    t = Path(p).read_text(encoding="utf-8")
+    for m in re.finditer(r'(?:src|href)="([^"]+)"', t):
+        seen.add(m.group(1))
+for u in sorted(seen):
+    print(u)
+PY
+}
 
 need=(
   index.html styles.css main.js README.md LICENSE 404.html humans.txt
@@ -23,7 +72,7 @@ done
 
 echo "== content gate =="
 for needle in "Guns for Hire" "Wookieepedia" "Grokipedia" "Plazir-15" "N-2"; do
-  if rg -q --fixed-strings "$needle" index.html; then
+  if contains "$needle" index.html; then
     echo "OK  contains: $needle"
   else
     echo "MISS content: $needle"
@@ -31,7 +80,7 @@ for needle in "Guns for Hire" "Wookieepedia" "Grokipedia" "Plazir-15" "N-2"; do
   fi
 done
 
-if rg -q 'fonts\.googleapis|fonts\.gstatic' index.html styles.css; then
+if matches_re 'fonts\.googleapis|fonts\.gstatic' index.html styles.css; then
   echo "FAIL third-party font CDN still referenced"
   fail=1
 else
@@ -42,7 +91,7 @@ echo "== json-ld gate =="
 if python3 - <<'PY'
 import re, json, sys
 from pathlib import Path
-t = Path("index.html").read_text()
+t = Path("index.html").read_text(encoding="utf-8")
 m = re.search(r'<script type="application/ld\+json">\s*(\{.*?\})\s*</script>', t, re.S)
 if not m:
     print("MISS json-ld block")
@@ -64,12 +113,10 @@ else
 fi
 
 echo "== asset ref gate =="
-# Local relative href/src from HTML must exist on disk
 while IFS= read -r u; do
   case "$u" in
     ""|http*|https*|\#*|mailto:*|data:*) continue ;;
   esac
-  # strip query/hash
   u="${u%%\?*}"; u="${u%%\#*}"
   if [[ -e "$u" ]]; then
     echo "OK  asset $u"
@@ -77,11 +124,10 @@ while IFS= read -r u; do
     echo "MISS asset $u"
     fail=1
   fi
-done < <(rg -o --no-filename '(?:src|href)="([^"]+)"' index.html 404.html | sed 's/.*="//;s/"$//' | sort -u)
+done < <(list_local_refs)
 
-if command -v python3 >/dev/null 2>&1; then
+if command -v python3 >/dev/null 2>&1 && command -v curl >/dev/null 2>&1; then
   echo "== local server probe =="
-  # Bind ephemeral port so we never collide with a long-lived :8765 server.
   port=$(python3 -c 'import socket; s=socket.socket(); s.bind(("127.0.0.1",0)); print(s.getsockname()[1]); s.close()')
   python3 -m http.server "$port" --bind 127.0.0.1 >/tmp/plazir-smoke-http.log 2>&1 &
   pid=$!
@@ -116,7 +162,8 @@ if [[ "${SMOKE_LIVE:-}" == "1" ]]; then
       fail=1
     fi
   done
-  if curl -s "${base}/" | rg -q 'fonts\.googleapis|fonts\.gstatic'; then
+  home_html=$(curl -s "${base}/")
+  if echo "$home_html" | text_has "fonts.googleapis" || echo "$home_html" | text_has "fonts.gstatic"; then
     echo "FAIL live still references Google Fonts CDN"
     fail=1
   else
@@ -124,7 +171,7 @@ if [[ "${SMOKE_LIVE:-}" == "1" ]]; then
   fi
   body_js=$(curl -s "${base}/main.js")
   for needle in focusHashTarget is-scrolled requestAnimationFrame; do
-    if echo "$body_js" | rg -q --fixed-strings "$needle"; then
+    if echo "$body_js" | text_has "$needle"; then
       echo "OK  live main.js has $needle"
     else
       echo "FAIL live main.js missing $needle"
@@ -139,7 +186,6 @@ if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
   echo "OK  HEAD $head"
   for remote in origin pages-user; do
     if git remote get-url "$remote" >/dev/null 2>&1; then
-      # Prefer local remote-tracking ref; fall back to ls-remote
       ref=$(git rev-parse --verify "${remote}/main" 2>/dev/null || true)
       if [[ -z "$ref" ]]; then
         ref=$(git ls-remote --heads "$remote" main 2>/dev/null | awk '{print $1}')
