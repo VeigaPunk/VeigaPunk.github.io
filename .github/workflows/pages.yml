@@ -1,9 +1,9 @@
-# Deploy static fan site to GitHub Pages from main
-name: Deploy GitHub Pages
+# Optional project-site Pages deploy (veigapunk.github.io/plazir-15-site/).
+# Primary live host is the user site: https://veigapunk.github.io/ (VeigaPunk.github.io).
+# Manual only until Settings → Pages → Source → GitHub Actions is enabled on this repo.
+name: Deploy GitHub Pages (project optional)
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:

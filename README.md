@@ -35,6 +35,13 @@ python3 -m http.server 8765
 # then visit http://127.0.0.1:8765/
 ```
 
+**Deploy (dual remote)**
+
+```bash
+./scripts/deploy.sh
+# pushes main → origin (plazir-15-site) and pages-user (VeigaPunk.github.io)
+```
+
 Files:
 
 | Path | Role |

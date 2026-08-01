@@ -31,6 +31,13 @@
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape") setNavOpen(false);
     });
+
+    document.addEventListener("click", function (e) {
+      if (navToggle.getAttribute("aria-expanded") !== "true") return;
+      var t = e.target;
+      if (siteNav.contains(t) || navToggle.contains(t)) return;
+      setNavOpen(false);
+    });
   }
 
   /* Highlight current section in nav (IntersectionObserver) */
