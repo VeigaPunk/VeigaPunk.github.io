@@ -1,393 +1,138 @@
-/**
- * Plazir-15 Fan Codex — light client interactions only.
- * No backend; ballot demo stays in-browser.
- */
+/* Plazir-15 Fan Codex — nav + charter ballot demo (client-only) */
 (function () {
   "use strict";
 
+  var header = document.querySelector(".site-header");
   var navToggle = document.getElementById("nav-toggle");
-  var siteNav = document.getElementById("site-nav");
-  var navLinks = siteNav ? siteNav.querySelectorAll("a[href^='#']") : [];
-  var mainEl = document.getElementById("main");
+  var mobileNav = document.getElementById("mobile-nav");
+  var netBanner = document.getElementById("net-banner");
 
-  function isMobileNav() {
-    return navToggle && window.getComputedStyle(navToggle).display !== "none";
+  function setScrolled() {
+    if (!header) return;
+    header.classList.toggle("is-scrolled", window.scrollY > 12);
   }
 
-  function setNavOpen(open, opts) {
-    opts = opts || {};
-    if (!navToggle || !siteNav) return;
+  setScrolled();
+  window.addEventListener("scroll", setScrolled, { passive: true });
 
-    navToggle.setAttribute("aria-expanded", open ? "true" : "false");
-    navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-    siteNav.classList.toggle("is-open", open);
-    document.body.classList.toggle("nav-open", open && isMobileNav());
-
-    if (isMobileNav()) {
-      siteNav.setAttribute("aria-hidden", open ? "false" : "true");
-      navLinks.forEach(function (link) {
-        if (open) link.removeAttribute("tabindex");
-        else link.setAttribute("tabindex", "-1");
-      });
-    } else {
-      siteNav.removeAttribute("aria-hidden");
-      navLinks.forEach(function (link) {
-        link.removeAttribute("tabindex");
-      });
-    }
-
-    if (opts.focus === "first" && open && navLinks[0]) {
-      navLinks[0].focus();
-    } else if (opts.focus === "toggle" && !open) {
-      navToggle.focus();
-    }
-  }
-
-  function syncNavForViewport() {
-    if (!navToggle || !siteNav) return;
-    if (!isMobileNav()) {
-      setNavOpen(false);
-      siteNav.removeAttribute("aria-hidden");
-      navLinks.forEach(function (link) {
-        link.removeAttribute("tabindex");
-      });
-      document.body.classList.remove("nav-open");
-    } else if (navToggle.getAttribute("aria-expanded") !== "true") {
-      siteNav.setAttribute("aria-hidden", "true");
-      navLinks.forEach(function (link) {
-        link.setAttribute("tabindex", "-1");
-      });
-    }
-  }
-
-  if (navToggle && siteNav) {
-    syncNavForViewport();
-
+  if (navToggle && mobileNav) {
     navToggle.addEventListener("click", function () {
-      var open = navToggle.getAttribute("aria-expanded") !== "true";
-      setNavOpen(open, { focus: open ? "first" : "toggle" });
+      var open = mobileNav.classList.toggle("is-open");
+      navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
     });
 
-    navLinks.forEach(function (link) {
+    mobileNav.querySelectorAll("a").forEach(function (link) {
       link.addEventListener("click", function () {
-        setNavOpen(false);
+        mobileNav.classList.remove("is-open");
+        navToggle.setAttribute("aria-expanded", "false");
+        navToggle.setAttribute("aria-label", "Open menu");
       });
     });
 
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && navToggle.getAttribute("aria-expanded") === "true") {
-        e.preventDefault();
-        setNavOpen(false, { focus: "toggle" });
-        return;
-      }
-
-      /* Simple focus cycle inside open mobile menu */
-      if (
-        e.key !== "Tab" ||
-        navToggle.getAttribute("aria-expanded") !== "true" ||
-        !isMobileNav()
-      ) {
-        return;
-      }
-
-      var focusables = [navToggle].concat(Array.prototype.slice.call(navLinks));
-      var first = focusables[0];
-      var last = focusables[focusables.length - 1];
-      var active = document.activeElement;
-
-      if (e.shiftKey && active === first) {
-        e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && active === last) {
-        e.preventDefault();
-        first.focus();
+    window.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && mobileNav.classList.contains("is-open")) {
+        mobileNav.classList.remove("is-open");
+        navToggle.setAttribute("aria-expanded", "false");
+        navToggle.setAttribute("aria-label", "Open menu");
       }
     });
-
-    document.addEventListener("click", function (e) {
-      if (navToggle.getAttribute("aria-expanded") !== "true") return;
-      var t = e.target;
-      if (siteNav.contains(t) || navToggle.contains(t)) return;
-      setNavOpen(false);
-    });
-
-    var resizeTimer = 0;
-    window.addEventListener("resize", function () {
-      window.clearTimeout(resizeTimer);
-      resizeTimer = window.setTimeout(syncNavForViewport, 120);
-    });
   }
 
-  /* Skip link: ensure main receives keyboard focus */
-  var skip = document.querySelector(".skip-link");
-  if (skip && mainEl) {
-    skip.addEventListener("click", function () {
-      window.setTimeout(function () {
-        mainEl.focus({ preventScroll: false });
-      }, 0);
-    });
+  function updateNet() {
+    if (!netBanner) return;
+    netBanner.hidden = navigator.onLine;
   }
+  updateNet();
+  window.addEventListener("online", updateNet);
+  window.addEventListener("offline", updateNet);
 
-  /* Hash navigation: move focus to section for keyboard / AT users */
-  function focusHashTarget() {
-    var id = (window.location.hash || "").replace(/^#/, "");
-    if (!id) return;
-    var el = document.getElementById(id);
-    if (!el) return;
-    if (!el.hasAttribute("tabindex")) {
-      el.setAttribute("tabindex", "-1");
-    }
-    window.setTimeout(function () {
-      el.focus({ preventScroll: true });
-    }, 0);
-  }
-
-  if (window.location.hash) {
-    focusHashTarget();
-  }
-  window.addEventListener("hashchange", focusHashTarget);
-
-  /* Highlight current section in nav (IntersectionObserver) */
-  var sectionIds = [
-    "astrography",
-    "world",
-    "government",
-    "history",
-    "ballot",
-    "glossary",
-    "appearances",
-    "sources",
+  var QUESTIONS = [
+    {
+      prompt:
+        "Should Landing Field Three expand visitor hospitality capacity for the next festival cycle?",
+      aye: "Authorize measured expansion under charter safety review",
+      nay: "Retain current capacity; prefer hyperloop redistribution",
+    },
+    {
+      prompt:
+        "Should the Ugnaught-maintained droid labor pool be expanded to free more citizen time for arts and civic life?",
+      aye: "Grow the pool carefully — abundance as charter infrastructure",
+      nay: "Hold scale; prioritize droid rehabilitation and stability first",
+    },
   ];
-  var sections = sectionIds
-    .map(function (id) {
-      return document.getElementById(id);
-    })
-    .filter(Boolean);
 
-  var linkByHash = {};
-  navLinks.forEach(function (a) {
-    var href = a.getAttribute("href");
-    if (href && href.charAt(0) === "#") linkByHash[href.slice(1)] = a;
-  });
-
-  function clearCurrent() {
-    Object.keys(linkByHash).forEach(function (id) {
-      linkByHash[id].removeAttribute("aria-current");
-    });
-  }
-
-  if ("IntersectionObserver" in window && sections.length) {
-    var io = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (!entry.isIntersecting) return;
-          clearCurrent();
-          var link = linkByHash[entry.target.id];
-          if (link) link.setAttribute("aria-current", "true");
-        });
-      },
-      { rootMargin: "-35% 0px -50% 0px", threshold: 0 }
-    );
-    sections.forEach(function (s) {
-      io.observe(s);
-    });
-  }
-
-  /* Charter ballot demo (sessionStorage only — never leaves the browser) */
   var form = document.getElementById("charter-ballot");
-  var result = document.getElementById("ballot-result");
-  var BALLOT_KEY = "plazir15-charter-ballot-demo";
+  if (form) {
+    var qIndex = 0;
+    var castCount = 0;
+    var labelEl = document.getElementById("ballot-q-label");
+    var promptEl = document.getElementById("ballot-prompt");
+    var ayeDesc = document.getElementById("ballot-aye-desc");
+    var nayDesc = document.getElementById("ballot-nay-desc");
+    var resultEl = document.getElementById("ballot-result");
+    var nextBtn = document.getElementById("ballot-next");
 
-  var labels = {
-    aye: "Aye — measured expansion under charter safety review",
-    nay: "Nay — retain capacity; prefer hyperloop redistribution",
-    abstain: "Abstain — presence recorded without preference",
-  };
-
-  function showReceipt(value, stamp, opts) {
-    opts = opts || {};
-    result.hidden = false;
-    result.classList.remove("is-error");
-    result.textContent =
-      "Demo receipt sealed · " +
-      labels[value] +
-      " · " +
-      stamp +
-      ". (Local only — nothing was transmitted.)";
-    if (opts.focus) result.focus();
-  }
-
-  if (form && result) {
-    try {
-      var prior = window.sessionStorage.getItem(BALLOT_KEY);
-      if (prior) {
-        var parsed = JSON.parse(prior);
-        if (parsed && parsed.value && labels[parsed.value]) {
-          var radio = form.querySelector(
-            'input[name="vote"][value="' + parsed.value + '"]'
-          );
-          if (radio) radio.checked = true;
-          showReceipt(parsed.value, parsed.stamp || "earlier this session", {
-            focus: false,
-          });
-        }
+    function renderQuestion() {
+      var q = QUESTIONS[qIndex];
+      if (labelEl) labelEl.textContent = "Sample civic question " + (qIndex + 1) + " of " + QUESTIONS.length;
+      if (promptEl) promptEl.textContent = q.prompt;
+      if (ayeDesc) ayeDesc.textContent = q.aye;
+      if (nayDesc) nayDesc.textContent = q.nay;
+      form.querySelectorAll('input[name="vote"]').forEach(function (el) {
+        el.checked = false;
+      });
+      if (resultEl) {
+        resultEl.hidden = true;
+        resultEl.textContent = "";
       }
-    } catch (err) {
-      /* ignore storage errors (private mode, etc.) */
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener("click", function () {
+        qIndex = (qIndex + 1) % QUESTIONS.length;
+        renderQuestion();
+      });
     }
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       var selected = form.querySelector('input[name="vote"]:checked');
-      result.hidden = false;
-
       if (!selected) {
-        result.classList.add("is-error");
-        result.textContent =
-          "No selection recorded. Choose Aye, Nay, or Abstain before casting your demo ballot.";
-        result.focus();
+        if (resultEl) {
+          resultEl.hidden = false;
+          resultEl.textContent = "Select Aye, Nay, or Abstain before casting.";
+        }
         return;
       }
-
-      var stamp = new Date().toLocaleString(undefined, {
-        dateStyle: "medium",
-        timeStyle: "short",
-      });
-      showReceipt(selected.value, stamp, { focus: true });
-      try {
-        window.sessionStorage.setItem(
-          BALLOT_KEY,
-          JSON.stringify({ value: selected.value, stamp: stamp })
-        );
-      } catch (err2) {
-        /* ignore */
+      var labels = { aye: "Aye", nay: "Nay", abstain: "Abstain" };
+      castCount += 1;
+      if (resultEl) {
+        resultEl.hidden = false;
+        resultEl.textContent =
+          "Demo ballot recorded: " +
+          labels[selected.value] +
+          ". Stored only in this browser — not a real election. Session demo ballots: " +
+          castCount +
+          ".";
       }
     });
 
-    form.addEventListener("reset", function () {
-      window.setTimeout(function () {
-        result.hidden = true;
-        result.textContent = "";
-        result.classList.remove("is-error");
-        try {
-          window.sessionStorage.removeItem(BALLOT_KEY);
-        } catch (err3) {
-          /* ignore */
-        }
-      }, 0);
-    });
-  }
-
-  /* Progressive share: Web Share API or clipboard */
-  var shareBtn = document.getElementById("share-site");
-  var shareStatus = document.getElementById("share-status");
-  var shareClearTimer = 0;
-  function announceShare(msg) {
-    if (!shareStatus) return;
-    shareStatus.hidden = false;
-    shareStatus.textContent = msg;
-    window.clearTimeout(shareClearTimer);
-    shareClearTimer = window.setTimeout(function () {
-      shareStatus.hidden = true;
-      shareStatus.textContent = "";
-    }, 4000);
-  }
-  if (shareBtn) {
-    var canShare =
-      typeof navigator.share === "function" ||
-      (navigator.clipboard && typeof navigator.clipboard.writeText === "function");
-    if (canShare) {
-      shareBtn.hidden = false;
-      shareBtn.addEventListener("click", function () {
-        var payload = {
-          title: "Plazir-15 Fan Codex",
-          text: "Unofficial fan documentation for Plazir-15 — Outer Rim domed paradise.",
-          url: "https://veigapunk.github.io/",
-        };
-        if (typeof navigator.share === "function") {
-          navigator.share(payload).then(
-            function () {
-              announceShare("Shared via system sheet.");
-            },
-            function () {
-              if (navigator.clipboard && navigator.clipboard.writeText) {
-                navigator.clipboard.writeText(payload.url).then(
-                  function () {
-                    announceShare("Link copied to clipboard.");
-                  },
-                  function () {
-                    announceShare("Share cancelled.");
-                  }
-                );
-              } else {
-                announceShare("Share cancelled.");
-              }
-            }
-          );
-        } else if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(payload.url).then(
-            function () {
-              announceShare("Link copied to clipboard.");
-            },
-            function () {
-              announceShare("Could not copy link.");
-            }
-          );
-        }
+    form.addEventListener("reset", function (e) {
+      e.preventDefault();
+      form.querySelectorAll('input[name="vote"]').forEach(function (el) {
+        el.checked = false;
       });
-    }
-  }
-
-  var printBtn = document.getElementById("print-site");
-  if (printBtn) {
-    printBtn.addEventListener("click", function () {
-      window.print();
+      if (resultEl) {
+        resultEl.hidden = true;
+        resultEl.textContent = "";
+      }
     });
   }
 
-  /* Year stamp in footer if present */
-  var yearEl = document.getElementById("footer-year");
-  if (yearEl) {
-    yearEl.textContent = String(new Date().getFullYear());
-  }
-
-  /* Elevate sticky header after scroll for separation from content */
-  var header = document.querySelector(".site-header");
-  if (header) {
-    var scrollQueued = false;
-    var updateHeader = function () {
-      scrollQueued = false;
-      header.classList.toggle("is-scrolled", window.scrollY > 10);
-    };
-    var onScroll = function () {
-      if (scrollQueued) return;
-      scrollQueued = true;
-      window.requestAnimationFrame(updateHeader);
-    };
-    updateHeader();
-    window.addEventListener("scroll", onScroll, { passive: true });
-  }
-
-  /* Offline shell: register SW only on the live user-Pages host */
-  if (
-    "serviceWorker" in navigator &&
-    window.location.hostname === "veigapunk.github.io"
-  ) {
+  if ("serviceWorker" in navigator) {
     window.addEventListener("load", function () {
-      navigator.serviceWorker.register("./sw.js").catch(function () {
-        /* non-fatal */
-      });
+      navigator.serviceWorker.register("./sw.js").catch(function () {});
     });
   }
-
-  /* Online / offline cue (works with or without SW) */
-  var netBanner = document.getElementById("net-banner");
-  function syncNetBanner() {
-    if (!netBanner) return;
-    var offline = typeof navigator.onLine === "boolean" && !navigator.onLine;
-    netBanner.hidden = !offline;
-  }
-  syncNetBanner();
-  window.addEventListener("online", syncNetBanner);
-  window.addEventListener("offline", syncNetBanner);
 })();

@@ -1,6 +1,6 @@
 /* Plazir-15 Fan Codex — offline shell (GitHub Pages only). */
 /* Bump CACHE when shipping material asset changes. */
-var CACHE = "plazir15-v3";
+var CACHE = "plazir15-v4";
 var PRECACHE = [
   "./",
   "./index.html",
@@ -18,6 +18,8 @@ var PRECACHE = [
   "./assets/ballot.svg",
   "./assets/landing.svg",
   "./assets/og-card.svg",
+  "./images/hero-domes.jpg",
+  "./images/interior-leisure.jpg",
   "./.well-known/security.txt",
 ];
 

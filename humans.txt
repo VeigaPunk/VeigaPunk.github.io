@@ -1,20 +1,9 @@
 /* TEAM */
-Fan codex — unofficial Star Wars documentation
+Curator: VeigaPunk
 Site: https://veigapunk.github.io/
-Repo: https://github.com/VeigaPunk/plazir-15-site
-
-/* THANKS */
-Wookieepedia (CC-BY-SA fan summary) — planet facts
-Grokipedia — Season 3 / episode framing
-The Mandalorian Chapter 22: Guns for Hire — first appearance
 
 /* SITE */
+Last update: 2026-08-06
 Standards: HTML5, CSS3, progressive enhancement
-Components: single-page static fan codex
-Fonts: system UI stacks only (no Google Fonts / no third-party font CDN)
-Doctype: HTML5
-Language: English
-
-/* NOTE */
-Not affiliated with Lucasfilm Ltd. or Disney.
-Non-commercial fan documentation / design homage.
+Components: Fan codex for Plazir-15 (The Mandalorian Ch. 22)
+Notes: Unofficial non-commercial homage — not Lucasfilm
