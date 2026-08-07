@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tools — Halo</title>
+<meta name="description" content="All operator-approved GTM tools in Halo." />
+<meta name="theme-color" content="#050605" />
+<link rel="icon" href="/halo/favicon.svg" type="image/svg+xml" />
+<link rel="stylesheet" href="/halo/assets/site.css" />
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="/halo/">
+      <span class="halo-dot"></span>
+      <span class="brand-text">
+        <span class="brand-name">Halo</span>
+        <span class="brand-sub">Horizon</span>
+      </span>
+    </a>
+    <nav class="nav">
+      <a href="/halo/tools/" class="active">Tools</a><a href="/halo/categories/" class="">Categories</a><a href="/halo/roles/" class="">Roles</a><a href="/halo/standard/" class="">Standard</a>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="section">
+  <div class="wrap">
+    <p class="label green">Directory</p>
+    <h1>Approved tools</h1>
+    <p class="lead narrow">Every entry cleared the Halo standard. Filter by category, pricing, or capability.</p>
+    <div class="tools-layout mt">
+      <aside class="filters panel" id="filters">
+        <input type="search" id="q" class="input" placeholder="Filter…" aria-label="Filter tools" />
+        <div class="filter-group">
+          <p class="label">Category</p>
+          <div class="chips" data-filter="category">
+            <button type="button" class="chip-btn active" data-value="all">All</button>
+            <button type="button" class="chip-btn" data-value="prospecting">Prospecting</button><button type="button" class="chip-btn" data-value="outreach">Outreach</button><button type="button" class="chip-btn" data-value="crm">CRM</button><button type="button" class="chip-btn" data-value="marketing">Marketing</button><button type="button" class="chip-btn" data-value="content">Content</button><button type="button" class="chip-btn" data-value="design">Design</button><button type="button" class="chip-btn" data-value="social">Social</button><button type="button" class="chip-btn" data-value="analytics">Analytics</button><button type="button" class="chip-btn" data-value="scraping">Extraction</button><button type="button" class="chip-btn" data-value="ai">AI</button><button type="button" class="chip-btn" data-value="developer">DevTools</button><button type="button" class="chip-btn" data-value="automation">Automation</button><button type="button" class="chip-btn" data-value="learning">Learning</button><button type="button" class="chip-btn" data-value="communities">Community</button>
+          </div>
+        </div>
+        <div class="filter-group">
+          <p class="label">Pricing</p>
+          <div class="chips" data-filter="pricing">
+            <button type="button" class="chip-btn active" data-value="all">All</button>
+            <button type="button" class="chip-btn" data-value="free">Free</button><button type="button" class="chip-btn" data-value="freemium">Freemium</button><button type="button" class="chip-btn" data-value="paid">Paid</button><button type="button" class="chip-btn" data-value="open-source">Open source</button>
+          </div>
+        </div>
+        <div class="filter-group">
+          <p class="label">Capabilities</p>
+          <div class="chips" data-filter="caps">
+            <button type="button" class="chip-btn" data-value="api">Has API</button>
+            <button type="button" class="chip-btn" data-value="mcp">Has MCP</button>
+            <button type="button" class="chip-btn" data-value="flagship">Flagship only</button>
+          </div>
+        </div>
+      </aside>
+      <div>
+        <p class="meta" id="count"></p>
+        <div class="grid-2" id="tool-grid">
+          <div class="tool-item" data-name="signalforge" data-tagline="intent signals without the noise tax" data-desc="real-time buying signals scored against your icp. built for operators who hate false positives more than empty pipelines." data-category="prospecting" data-pricing="paid" data-api="true" data-mcp="true" data-flagship="true">
+  <a class="card tool-card" href="/halo/tools/signalforge/">
+    <div class="card-top">
+      <div>
+        <div class="card-title-row">
+          <h3>Signalforge</h3>
+          <span class="badge badge-flagship">Flagship</span>
+          
+        </div>
+        <p class="meta">Prospecting &amp; Lead Data · Paid</p>
+      </div>
+      <span class="icon-box">↗</span>
+    </div>
+    <p class="desc">Real-time buying signals scored against your ICP. Built for operators who hate false positives more than empty pipelines.</p>
+    <div class="card-foot">
+      <span class="badge badge-outline">API</span>
+      <span class="badge badge-outline">MCP</span>
+    </div>
+  </a></div><div class="tool-item" data-name="prism enrich" data-tagline="enrichment orchestration that doesn't rot" data-desc="waterfall enrichment with source provenance, cost caps, and dedupe that actually works under volume." data-category="prospecting" data-pricing="freemium" data-api="true" data-mcp="true" data-flagship="false">
+  <a class="card tool-card" href="/halo/tools/prism-enrich/">
+    <div class="card-top">
+      <div>
+        <div class="card-title-row">
+          <h3>Prism Enrich</h3>
+          
+          
+        </div>
+        <p class="meta">Prospecting &amp; Lead Data · Freemium</p>
+      </div>
+      <span class="icon-box">↗</span>
+    </div>
+    <p class="desc">Waterfall enrichment with source provenance, cost caps, and dedupe that actually works under volume.</p>
+    <div class="card-foot">
+      <span class="badge badge-outline">API</span>
+      <span class="badge badge-outline">MCP</span>
+    </div>
+  </a></div><div class="tool-item" data-name="sequence loom" data-tagline="deliverability-first cold outreach" data-desc="sequences engineered for inbox placement, not vanity open rates. multi-channel with human-safe pacing." data-category="outreach" data-pricing="paid" data-api="true" data-mcp="false" data-flagship="true">
+  <a class="card tool-card" href="/halo/tools/sequence-loom/">
+    <div class="card-top">
+      <div>
+        <div class="card-title-row">
+          <h3>Sequence Loom</h3>
+          <span class="badge badge-flagship">Flagship</span>
+          
+        </div>
+        <p class="meta">Outreach &amp; Sequences · Paid</p>
+      </div>
+      <span class="icon-box">↗</span>
+    </div>
+    <p class="desc">Sequences engineered for inbox placement, not vanity open rates. Multi-channel with human-safe pacing.</p>
+    <div class="card-foot">
+      <span class="badge badge-outline">API</span>
+      
+    </div>
+  </a></div><div class="tool-item" data-name="dispatch" data-tagline="outbound send infrastructure" data-desc="the transport layer under sequence loom — warm pools, rotation, and bounce intelligence." data-category="outreach" data-pricing="paid" data-api="true" data-mcp="false" data-flagship="false">
+  <a class="card tool-card" href="/halo/tools/dispatch/">
+    <div class="card-top">
+      <div>
+        <div class="card-title-row">
+          <h3>Dispatch</h3>
+          
+          
+        </div>
+        <p class="meta">Outreach &amp; Sequences · Paid</p>
+      </div>
+      <span class="icon-box">↗</span>
+    </div>
+    <p class="desc">The transport layer under Sequence Loom — warm pools, rotation, and bounce intelligence.</p>
+    <div class="card-foot">
+      <span class="badge badge-outline">API</span>
+      
+    </div>
+  </a></div><div class="tool-item" data-name="pipeline lattice" data-tagline="crm without enterprise gravity" data-desc="a deal system built for stage discipline, forecast honesty, and integrations that don't break every sprint." data-category="crm" data-pricing="freemium" data-api="true" data-mcp="true" data-flagship="true">
+  <a class="card tool-card" href="/halo/tools/pipeline-lattice/">
+    <div class="card-top">
+      <div>
+        <div class="card-title-row">
+          <h3>Pipeline Lattice</h3>
+          <span class="badge badge-flagship">Flagship</span>
+          
+        </div>
+        <p class="meta">CRM &amp; Deal Management · Freemium</p>
+      </div>
+      <span class="icon-box">↗</span>
+    </div>
+    <p class="desc">A deal system built for stage discipline, forecast honesty, and integrations that don't break every sprint.</p>
+    <div class="card-foot">
+      <span class="badge badge-outline">API</span>
+      <span class="badge badge-outline">MCP</span>
+    </div>
+  </a></div><div class="tool-item" data-name="briefcase os" data-tagline="revops command surface" data-desc="a single pane for hygiene scores, forecast rollups, and operator runbooks." data-category="crm" data-pricing="paid" data-api="true" data-mcp="false" data-flagship="false">
+  <a class="card tool-card" href="/halo/tools/briefcase-os/">
+    <div class="card-top">
+      <div>
+        <div class="card-title-row">
+          <h3>Briefcase OS</h3>
+          
+          
+        </div>
+        <p class="meta">CRM &amp; Deal Management · Paid</p>
+      </div>
+      <span class="icon-box">↗</span>
+    </div>
+    <p class="desc">A single pane for hygiene scores, forecast rollups, and operator runbooks.</p>
+    <div class="card-foot">
+      <span class="badge badge-outline">API</span>
+      
+    </div>
+  </a></div><div class="tool-item" data-name="copywright" data-tagline="gtm copy with source of truth" data-desc="research → brief → draft → brand voice. content systems for teams who ship weekly, not quarterly." data-category="content" data-pricing="freemium" data-api="true" data-mcp="true" data-flagship="true">
+  <a class="card tool-card" href="/halo/tools/copywright/">
+    <div class="card-top">
+      <div>
+        <div class="card-title-row">
+          <h3>Copywright</h3>
+          <span class="badge badge-flagship">Flagship</span>
+          
+        </div>
+        <p class="meta">Content Creation · Freemium</p>
+      </div>
+      <span class="icon-box">↗</span>
+    </div>
+    <p class="desc">Research → brief → draft → brand voice. Content systems for teams who ship weekly, not quarterly.</p>
+    <div class="card-foot">
+      <span class="badge badge-outline">API</span>
+      <span class="badge badge-outline">MCP</span>
+    </div>
+  </a></div><div class="tool-item" data-name="halo frames" data-tagline="design systems for gtm media" data-desc="templates, motion primitives, and brand kits for decks, ads, and launch assets." data-category="design" data-pricing="paid" data-api="false" data-mcp="false" data-flagship="false">
+  <a class="card tool-card" href="/halo/tools/halo-frames/">
+    <div class="card-top">
+      <div>
+        <div class="card-title-row">
+          <h3>Halo Frames</h3>
+          
+          
+        </div>
+        <p class="meta">Design &amp; Media · Paid</p>
+      </div>
+      <span class="icon-box">↗</span>
+    </div>
+    <p class="desc">Templates, motion primitives, and brand kits for decks, ads, and launch assets.</p>
+    <div class="card-foot">
+      
+      
+    </div>
+  </a></div><div class="tool-item" data-name="orbit desk" data-tagline="founder-led social that scales" data-desc="scheduling, listening, and repurposing for teams who treat social as pipeline, not vanity." data-category="social" data-pricing="freemium" data-api="true" data-mcp="false" data-flagship="false">
+  <a class="card tool-card" href="/halo/tools/orbit-desk/">
+    <div class="card-top">
+      <div>
+        <div class="card-title-row">
+          <h3>Orbit Desk</h3>
+          
+          
+        </div>
+        <p class="meta">Social Media · Freemium</p>
+      </div>
+      <span class="icon-box">↗</span>
+    </div>
+    <p class="desc">Scheduling, listening, and repurposing for teams who treat social as pipeline, not vanity.</p>
+    <div class="card-foot">
+      <span class="badge badge-outline">API</span>
+      
+    </div>
+  </a></div><div class="tool-item" data-name="ledgerline" data-tagline="revenue analytics without the drama" data-desc="attribution, cohort truth, and operator dashboards that refuse vanity metrics." data-category="analytics" data-pricing="paid" data-api="true" data-mcp="true" data-flagship="true">
+  <a class="card tool-card" href="/halo/tools/ledgerline/">
+    <div class="card-top">
+      <div>
+        <div class="card-title-row">
+          <h3>Ledgerline</h3>
+          <span class="badge badge-flagship">Flagship</span>
+          
+        </div>
+        <p class="meta">Analytics &amp; Data · Paid</p>
+      </div>
+      <span class="icon-box">↗</span>
+    </div>
+    <p class="desc">Attribution, cohort truth, and operator dashboards that refuse vanity metrics.</p>
+    <div class="card-foot">
+      <span class="badge badge-outline">API</span>
+      <span class="badge badge-outline">MCP</span>
+    </div>
+  </a></div><div class="tool-item" data-name="extractum" data-tagline="web extraction for gtm builders" data-desc="structured scrapers, change detection, and clean datasets for enrichment and research." data-category="scraping" data-pricing="open-source" data-api="true" data-mcp="true" data-flagship="false">
+  <a class="card tool-card" href="/halo/tools/extractum/">
+    <div class="card-top">
+      <div>
+        <div class="card-title-row">
+          <h3>Extractum</h3>
+          
+          
+        </div>
+        <p class="meta">Scraping &amp; Extraction · Open source</p>
+      </div>
+      <span class="icon-box">↗</span>
+    </div>
+    <p class="desc">Structured scrapers, change detection, and clean datasets for enrichment and research.</p>
+    <div class="card-foot">
+      <span class="badge badge-outline">API</span>
+      <span class="badge badge-outline">MCP</span>
+    </div>
+  </a></div><div class="tool-item" data-name="agent forge" data-tagline="production agents for gtm work" data-desc="spec-driven agents with tool use, evals, and human gates. not a chat toy — an ops worker." data-category="ai" data-pricing="open-source" data-api="true" data-mcp="true" data-flagship="true">
+  <a class="card tool-card" href="/halo/tools/agent-forge/">
+    <div class="card-top">
+      <div>
+        <div class="card-title-row">
+          <h3>Agent Forge</h3>
+          <span class="badge badge-flagship">Flagship</span>
+          
+        </div>
+        <p class="meta">AI &amp; Machine Learning · Open source</p>
+      </div>
+      <span class="icon-box">↗</span>
+    </div>
+    <p class="desc">Spec-driven agents with tool use, evals, and human gates. Not a chat toy — an ops worker.</p>
+    <div class="card-foot">
+      <span class="badge badge-outline">API</span>
+      <span class="badge badge-outline">MCP</span>
+    </div>
+  </a></div><div class="tool-item" data-name="relay graph" data-tagline="workflow automation that holds under load" data-desc="event-driven orchestration with retries, observability, and versioned graphs." data-category="automation" data-pricing="freemium" data-api="true" data-mcp="true" data-flagship="false">
+  <a class="card tool-card" href="/halo/tools/relay-graph/">
+    <div class="card-top">
+      <div>
+        <div class="card-title-row">
+          <h3>Relay Graph</h3>
+          
+          
+        </div>
+        <p class="meta">Workflow Automation · Freemium</p>
+      </div>
+      <span class="icon-box">↗</span>
+    </div>
+    <p class="desc">Event-driven orchestration with retries, observability, and versioned graphs.</p>
+    <div class="card-foot">
+      <span class="badge badge-outline">API</span>
+      <span class="badge badge-outline">MCP</span>
+    </div>
+  </a></div><div class="tool-item" data-name="foundry notes" data-tagline="playbooks that stay current" data-desc="living gtm playbooks with version history, ownership, and links into the tools that execute them." data-category="learning" data-pricing="free" data-api="false" data-mcp="false" data-flagship="false">
+  <a class="card tool-card" href="/halo/tools/foundry-notes/">
+    <div class="card-top">
+      <div>
+        <div class="card-title-row">
+          <h3>Foundry Notes</h3>
+          
+          
+        </div>
+        <p class="meta">Learning &amp; Resources · Free</p>
+      </div>
+      <span class="icon-box">↗</span>
+    </div>
+    <p class="desc">Living GTM playbooks with version history, ownership, and links into the tools that execute them.</p>
+    <div class="card-foot">
+      
+      
+    </div>
+  </a></div><div class="tool-item" data-name="quorum room" data-tagline="operator community, low noise" data-desc="invite-only rooms for gtm operators. signal over theater. structured amas and stack reviews." data-category="communities" data-pricing="paid" data-api="false" data-mcp="false" data-flagship="false">
+  <a class="card tool-card" href="/halo/tools/quorum-room/">
+    <div class="card-top">
+      <div>
+        <div class="card-title-row">
+          <h3>Quorum Room</h3>
+          
+          <span class="badge badge-accent">New</span>
+        </div>
+        <p class="meta">Communities &amp; Networks · Paid</p>
+      </div>
+      <span class="icon-box">↗</span>
+    </div>
+    <p class="desc">Invite-only rooms for GTM operators. Signal over theater. Structured AMAs and stack reviews.</p>
+    <div class="card-foot">
+      
+      
+    </div>
+  </a></div><div class="tool-item" data-name="dev spine" data-tagline="gtm developer primitives" data-desc="typed sdks, webhook receivers, and secret rotation for the rest of the halo stack." data-category="developer" data-pricing="open-source" data-api="true" data-mcp="true" data-flagship="false">
+  <a class="card tool-card" href="/halo/tools/dev-spine/">
+    <div class="card-top">
+      <div>
+        <div class="card-title-row">
+          <h3>Dev Spine</h3>
+          
+          
+        </div>
+        <p class="meta">Developer Tools · Open source</p>
+      </div>
+      <span class="icon-box">↗</span>
+    </div>
+    <p class="desc">Typed SDKs, webhook receivers, and secret rotation for the rest of the Halo stack.</p>
+    <div class="card-foot">
+      <span class="badge badge-outline">API</span>
+      <span class="badge badge-outline">MCP</span>
+    </div>
+  </a></div><div class="tool-item" data-name="growth vector" data-tagline="experiment system for demand gen" data-desc="hypothesis → launch → read → kill. experiment os with creative and channel matrices." data-category="marketing" data-pricing="paid" data-api="true" data-mcp="false" data-flagship="false">
+  <a class="card tool-card" href="/halo/tools/growth-vector/">
+    <div class="card-top">
+      <div>
+        <div class="card-title-row">
+          <h3>Growth Vector</h3>
+          
+          <span class="badge badge-accent">New</span>
+        </div>
+        <p class="meta">Marketing &amp; Growth · Paid</p>
+      </div>
+      <span class="icon-box">↗</span>
+    </div>
+    <p class="desc">Hypothesis → launch → read → kill. Experiment OS with creative and channel matrices.</p>
+    <div class="card-foot">
+      <span class="badge badge-outline">API</span>
+      
+    </div>
+  </a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="/halo/assets/filter.js"></script>
+</main>
+<footer class="site-footer">
+  <div class="horizon-line"></div>
+  <div class="wrap footer-grid">
+    <div>
+      <div class="brand footer-brand"><span class="halo-dot"></span><span class="brand-name">Halo</span></div>
+      <p class="desc">Operator-approved GTM directory. Horizon Halo design language. Only tools that clear the bar.</p>
+      <p class="meta">17 tools · 14 categories · 100% independent</p>
+    </div>
+    <div>
+      <p class="label">Directory</p>
+      <ul class="footer-links">
+        <li><a href="/halo/tools/">All tools</a></li>
+        <li><a href="/halo/categories/">Categories</a></li>
+        <li><a href="/halo/roles/">Stacks by role</a></li>
+        <li><a href="/halo/standard/">Curation standard</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="label">Design language</p>
+      <p class="desc">Horizon Halo — green console, JetBrains Mono NL, flat surfaces, peripheral confidence glow.</p>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <p>© 2026 Halo · VeigaPunk · Horizon Halo · JetBrains Mono NL</p>
+    <p>Prototype · operator-curated only</p>
+  </div>
+</footer>
+</body>
+</html>
