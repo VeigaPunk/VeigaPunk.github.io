@@ -1,6 +1,6 @@
 /* Plazir-15 Fan Codex — offline shell (GitHub Pages only). */
 /* Bump CACHE when shipping material asset changes. */
-var CACHE = "plazir15-v4";
+var CACHE = "plazir15-v5";
 var PRECACHE = [
   "./",
   "./index.html",
@@ -18,6 +18,16 @@ var PRECACHE = [
   "./assets/ballot.svg",
   "./assets/landing.svg",
   "./assets/og-card.svg",
+  "./assets/og-card.png",
+  "./assets/apple-touch-icon.png",
+  "./assets/fonts/fonts.css",
+  "./assets/fonts/cormorant-garamond-italic-500.woff2",
+  "./assets/fonts/cormorant-garamond-normal-500.woff2",
+  "./assets/fonts/cormorant-garamond-normal-600.woff2",
+  "./assets/fonts/manrope-normal-400.woff2",
+  "./assets/fonts/manrope-normal-500.woff2",
+  "./assets/fonts/manrope-normal-600.woff2",
+  "./assets/fonts/manrope-normal-700.woff2",
   "./images/hero-domes.jpg",
   "./images/interior-leisure.jpg",
   "./.well-known/security.txt",
@@ -26,8 +36,9 @@ var PRECACHE = [
 function precacheAll(cache) {
   return Promise.all(
     PRECACHE.map(function (url) {
-      return cache.add(url).catch(function () {
-        /* one miss must not abort the whole install */
+      return cache.add(url).catch(function (err) {
+        /* one miss must not abort the whole install, but log it */
+        console.warn("sw precache miss:", url, err);
       });
     })
   );

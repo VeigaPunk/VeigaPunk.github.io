@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Unofficial fan codex for Plazir-15 from The Mandalorian — a homage to abundance under glass, droid labor as civic infrastructure, and the choice between acceleration and retreat." />
+  <meta name="description" content="Unofficial fan codex for Plazir-15 from The Mandalorian — a homage to abundance under glass, droid labor, and directed abundance." />
   <meta name="theme-color" content="#070d10" />
   <meta name="color-scheme" content="dark" />
   <meta name="robots" content="index,follow" />
@@ -16,20 +16,62 @@
   <meta property="og:description" content="Unofficial fan codex for Plazir-15: bio-domes, droid labor as abundance, elective charter, and Chapter 22: Guns for Hire." />
   <meta property="og:url" content="https://veigapunk.github.io/" />
   <meta property="og:locale" content="en_US" />
-  <meta property="og:image" content="https://veigapunk.github.io/assets/og-card.svg" />
+  <meta property="og:image" content="https://veigapunk.github.io/assets/og-card.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:alt" content="Plazir-15 Fan Codex — domed paradise of the Outer Rim" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Plazir-15 — Domed Paradise" />
   <meta name="twitter:description" content="Unofficial fan codex for the Outer Rim planet Plazir-15 (The Mandalorian — Chapter 22)." />
-  <meta name="twitter:image" content="https://veigapunk.github.io/assets/og-card.svg" />
+  <meta name="twitter:image" content="https://veigapunk.github.io/assets/og-card.png" />
+  <meta name="twitter:image:alt" content="Plazir-15 Fan Codex — domed paradise of the Outer Rim" />
   <title>Plazir-15 — Domed Paradise of the Outer Rim | Fan Codex</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="manifest" href="site.webmanifest" />
   <link rel="author" type="text/plain" href="humans.txt" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" href="assets/fonts/manrope-normal-400.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/cormorant-garamond-normal-600.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="apple-touch-icon" href="assets/favicon.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "name": "Plazir-15 Fan Codex",
+        "url": "https://veigapunk.github.io/"
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://veigapunk.github.io/",
+        "url": "https://veigapunk.github.io/",
+        "name": "Plazir-15 — Domed Paradise of the Outer Rim | Fan Codex",
+        "description": "Unofficial fan codex for Plazir-15: bio-domes, droid labor as abundance, elective charter, and Chapter 22: Guns for Hire."
+      },
+      {
+        "@type": "Place",
+        "name": "Plazir-15",
+        "alternateName": "Domed Paradise of the Outer Rim",
+        "description": "Terrestrial planet in the Outer Rim Territories, New Territories grid square N-2."
+      },
+      {
+        "@type": "DefinedTermSet",
+        "name": "Plazir-15 glossary",
+        "hasDefinedTerm": [
+          {"@type": "DefinedTerm", "name": "Bio-domes", "description": "Climate-tamed urban habitats where most of Plazir-15’s population lives."},
+          {"@type": "DefinedTerm", "name": "Droid labor pool", "description": "Large workforce of rehabilitated former Imperial and Separatist droids, maintained by Ugnaughts."},
+          {"@type": "DefinedTerm", "name": "Elective monarchy", "description": "Monarchic co-rule joined to direct democracy; citizens vote via automated systems."},
+          {"@type": "DefinedTerm", "name": "Charter", "description": "Pacifistic and pluralistic founding rules; independent of the New Republic."},
+          {"@type": "DefinedTerm", "name": "Hyperloop", "description": "Surface transit linking landing pads and sites outside the metro domes."},
+          {"@type": "DefinedTerm", "name": "Royal Hall sub-dome", "description": "Ceremonial court space within the dome complex, associated with the co-rulers."}
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -50,14 +92,18 @@
         <span class="nav-toggle-bar" aria-hidden="true"></span>
         <span class="nav-toggle-bar" aria-hidden="true"></span>
       </button>
-      <nav class="site-nav" aria-label="Primary">
-        <ul class="nav-list">
+      <nav aria-label="Primary">
+        <ul class="nav-list" id="primary-nav">
           <li><a href="#homage">Homage</a></li>
           <li><a href="#world">World</a></li>
           <li><a href="#labor">Labor</a></li>
           <li><a href="#paths">Paths</a></li>
           <li><a href="#charter">Charter</a></li>
           <li><a href="#ballot">Ballot</a></li>
+          <li><a href="#astrography">Astro</a></li>
+          <li><a href="#history">History</a></li>
+          <li><a href="#glossary">Glossary</a></li>
+          <li><a href="#appearances">Screen</a></li>
           <li><a href="#sources">Sources</a></li>
         </ul>
       </nav>
@@ -71,6 +117,10 @@
           <li><a href="#paths">Paths</a></li>
           <li><a href="#charter">Charter</a></li>
           <li><a href="#ballot">Ballot</a></li>
+          <li><a href="#astrography">Astrography</a></li>
+          <li><a href="#history">History</a></li>
+          <li><a href="#glossary">Glossary</a></li>
+          <li><a href="#appearances">Appearances</a></li>
           <li><a href="#sources">Sources</a></li>
         </ul>
       </div>
@@ -80,7 +130,7 @@
   <main id="main" tabindex="-1">
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-bg" aria-hidden="true">
-        <img src="images/hero-domes.jpg" alt="" width="1176" height="784" decoding="async" />
+        <img src="images/hero-domes.jpg" alt="" width="1168" height="784" decoding="async" fetchpriority="high" />
       </div>
       <div class="section-max hero-grid">
         <div>
@@ -166,7 +216,7 @@
           <p class="lede">Metro civilization thrives inside bio-domes; the wild green belt beyond is linked by rail and pad — abundance without sprawl.</p>
         </header>
         <div class="media-frame">
-          <img src="images/interior-leisure.jpg" alt="Interior of a bio-dome city: chrome walkways, tropical plantings, and service droids under a glass canopy at golden hour." width="1176" height="784" loading="lazy" decoding="async" />
+          <img src="images/interior-leisure.jpg" alt="Interior of a bio-dome city: chrome walkways, tropical plantings, and service droids under a glass canopy at golden hour." width="1168" height="784" loading="lazy" decoding="async" />
         </div>
         <div class="grid-3">
           <article class="glass card">
@@ -185,9 +235,9 @@
             <p>Known planetary approach pad, paired with the <strong>Royal Hall</strong> sub-dome — ceremonial heart of the co-rulers’ court within the larger dome complex.</p>
           </article>
         </div>
-        <div style="margin-top:3rem">
-          <h3 style="font-family:var(--font-display);font-size:1.5rem;font-weight:600;margin:0">Species on-world (seen)</h3>
-          <p style="margin:0.5rem 0 0;color:var(--muted);max-width:40rem">A pluralistic citizenry matching the charter’s ideals — list drawn from on-screen appearances.</p>
+        <div class="species-block">
+          <h3 class="subhead">Species on-world (seen)</h3>
+          <p class="subhead-note">A pluralistic citizenry matching the charter’s ideals — list drawn from on-screen appearances.</p>
           <ul class="species-chips" aria-label="Species observed on Plazir-15">
             <li>Human</li><li>Ugnaught</li><li>Bith</li><li>Ishi Tib</li><li>Ithorian</li>
             <li>Mon Calamari</li><li>Quarren</li><li>Querm Rybet</li><li>Rodian</li>
@@ -235,16 +285,16 @@
         </header>
         <div class="grid-2">
           <article class="path-card">
-            <p class="eyebrow" style="color:var(--faint)">The yoke path</p>
+            <p class="eyebrow eyebrow--faint">The yoke path</p>
             <h3>Empire & extractive accel</h3>
             <p>Under the Galactic Empire, machine power and order served domination. Acceleration without a charter — more capacity pointed at control — is what Plazir-15 had to survive. Deceleration-as-fear is the mirror image: freeze the tools because they once hurt, and accept permanent scarcity as the moral price.</p>
-            <p style="font-size:0.9rem;color:var(--faint)">In both frames, ordinary people do not get the surplus.</p>
+            <p class="small-note text-faint">In both frames, ordinary people do not get the surplus.</p>
           </article>
           <article class="path-card path-card--accent">
             <p class="eyebrow">The charter path</p>
             <h3>Directed abundance</h3>
             <p>Post-Empire Plazir does not smash the droids. It rehabilitates them, binds power with elective monarchy and direct ballots, and aims the labor pool at leisure and pluralism. That is acceleration with a destination: <em>more capable agents, governed so the wealth compounds for citizens rather than warlords.</em></p>
-            <p style="font-size:0.9rem">The homage lands here — a sketch of what agents and AI could buy a society that chooses charter over yoke.</p>
+            <p class="small-note">The homage lands here — a sketch of what agents and AI could buy a society that chooses charter over yoke.</p>
           </article>
         </div>
         <p class="paths-closer">Accel without stewardship is the Empire. Decel without imagination is permanent scarcity. Plazir-15 is the third image: <span>build the dome, free the people, keep the charter.</span></p>
@@ -258,7 +308,7 @@
           <h2 id="gov-heading">Elective monarchy & direct democracy</h2>
           <p class="lede">In the New Republic Era: co-rule by ballot and crown, pacifist charter, and a droid labor foundation.</p>
         </header>
-        <div class="grid-2" style="margin-bottom:2rem">
+        <div class="grid-2 mb-2">
           <article class="glass ruler-card" id="duchess">
             <p class="ruler-role">Co-ruler</p>
             <h3>The Duchess</h3>
@@ -272,7 +322,7 @@
         </div>
         <div class="power-grid">
           <div>
-            <h3 style="font-family:var(--font-display);font-size:1.5rem;font-weight:600;margin:0">How power works</h3>
+            <h3 class="subhead">How power works</h3>
             <ul class="feature-list">
               <li><span><strong>Elective monarchy + direct democracy.</strong> Citizens vote through automated systems rather than distant legislatures alone.</span></li>
               <li><span><strong>Shared co-rule.</strong> The dual office binds noble continuity to a former Imperial who turned toward the charter.</span></li>
@@ -281,7 +331,7 @@
             </ul>
           </div>
           <aside class="glass charter-panel" aria-labelledby="charter-title">
-            <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;color:var(--leaf)">
+            <div class="panel-head">
               <img src="assets/ballot.svg" alt="" width="28" height="28" aria-hidden="true" />
               <h3 id="charter-title">Charter pillars</h3>
             </div>
@@ -418,7 +468,7 @@
           <h2 id="sources-heading">Sources</h2>
           <p class="lede">Dual-sourced fan summary. Prefer Wookieepedia for planet data; episode framing may also reference Grokipedia.</p>
         </header>
-        <ul class="grid-2" style="list-style:none;margin:0;padding:0">
+        <ul class="grid-2 source-list">
           <li>
             <a class="glass source-card" href="https://starwars.fandom.com/wiki/Plazir-15" target="_blank" rel="noopener noreferrer">
               <span class="eyebrow">Primary</span>
@@ -434,6 +484,7 @@
             </a>
           </li>
         </ul>
+        <p class="source-fallback">If Fandom is unreachable, try the <a href="https://web.archive.org/web/*/https://starwars.fandom.com/wiki/Plazir-15" target="_blank" rel="noopener noreferrer">Wayback Machine mirror</a>.</p>
       </div>
     </section>
   </main>
@@ -442,11 +493,11 @@
     <div class="section-max footer-inner">
       <div>
         <p class="footer-title">Plazir-15 Fan Codex</p>
-        <p style="margin:0.5rem 0 0;max-width:36rem;line-height:1.6">
+        <p class="footer-blurb">
           Non-commercial fan summary and design homage. Not an official Lucasfilm, Disney, or Lucasfilm Games product. Planet facts prefer Wookieepedia; episode framing may also reference Grokipedia.
         </p>
       </div>
-      <p style="margin:0"><a href="#top">Back to top</a></p>
+      <p class="footer-top"><a href="#top">Back to top</a></p>
     </div>
   </footer>
 

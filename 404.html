@@ -10,43 +10,80 @@
   <link rel="canonical" href="https://veigapunk.github.io/" />
   <title>Not found — Plazir-15 Fan Codex</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/fonts/fonts.css" />
   <link rel="stylesheet" href="styles.css" />
-  <style>
-    .err-wrap {
-      min-height: 70vh;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: center;
-      max-width: 40rem;
-      margin: 0 auto;
-      padding: 4rem 1.25rem;
-    }
-    .err-wrap h1 {
-      font-family: var(--font-display, Georgia, serif);
-      font-size: clamp(2rem, 6vw, 3rem);
-      margin: 0 0 0.75rem;
-      color: var(--chrome-bright, #e8f1f4);
-    }
-    .err-wrap p {
-      color: var(--text-muted, #a8bcc4);
-      margin: 0 0 1.5rem;
-    }
-  </style>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-  <main class="err-wrap" id="main" tabindex="-1">
-    <p class="eyebrow" style="margin:0 0 0.5rem;font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;color:#5eb8b0;">Hyperloop miss · 404</p>
-    <h1>Path not on the charter map</h1>
-    <p>This route is outside the bio-domes. Return to Plazir-15’s main hall.</p>
-    <p>
-      <a class="btn btn-primary" href="./">Back to Plazir-15</a>
-    </p>
-    <p style="font-size:0.85rem;color:var(--text-faint,#7e949e);margin-top:2rem;">
-      Unofficial fan site · Not Lucasfilm ·
-      <a href="https://veigapunk.github.io/">veigapunk.github.io</a>
-    </p>
+
+  <header class="site-header">
+    <div class="section-max header-inner">
+      <a class="brand" href="/" aria-label="Plazir-15 home">
+        <span class="brand-mark" aria-hidden="true">
+          <img src="assets/dome.svg" alt="" width="20" height="20" />
+        </span>
+        <span class="brand-text">Plazir-15</span>
+      </a>
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+      </button>
+      <nav aria-label="Primary">
+        <ul class="nav-list">
+          <li><a href="/#homage">Homage</a></li>
+          <li><a href="/#world">World</a></li>
+          <li><a href="/#labor">Labor</a></li>
+          <li><a href="/#paths">Paths</a></li>
+          <li><a href="/#charter">Charter</a></li>
+          <li><a href="/#ballot">Ballot</a></li>
+          <li><a href="/#astrography">Astro</a></li>
+          <li><a href="/#history">History</a></li>
+          <li><a href="/#glossary">Glossary</a></li>
+          <li><a href="/#appearances">Screen</a></li>
+          <li><a href="/#sources">Sources</a></li>
+        </ul>
+      </nav>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile">
+      <div class="section-max">
+        <ul>
+          <li><a href="/#homage">Homage</a></li>
+          <li><a href="/#world">World</a></li>
+          <li><a href="/#labor">Labor</a></li>
+          <li><a href="/#paths">Paths</a></li>
+          <li><a href="/#charter">Charter</a></li>
+          <li><a href="/#ballot">Ballot</a></li>
+          <li><a href="/#astrography">Astrography</a></li>
+          <li><a href="/#history">History</a></li>
+          <li><a href="/#glossary">Glossary</a></li>
+          <li><a href="/#appearances">Appearances</a></li>
+          <li><a href="/#sources">Sources</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <div class="section-max err-wrap">
+      <p class="eyebrow">Hyperloop miss · 404</p>
+      <h1 class="err-title">Path not on the charter map</h1>
+      <p class="err-lede">This route is outside the bio-domes. Return to Plazir-15’s main hall.</p>
+      <p><a class="btn btn-primary" href="/">Back to Plazir-15</a></p>
+      <p class="err-note">Unofficial fan site · Not Lucasfilm · <a href="https://veigapunk.github.io/">veigapunk.github.io</a></p>
+    </div>
   </main>
+
+  <footer class="site-footer">
+    <div class="section-max footer-inner">
+      <div>
+        <p class="footer-title">Plazir-15 Fan Codex</p>
+        <p class="footer-blurb">Non-commercial fan summary and design homage. Not an official Lucasfilm, Disney, or Lucasfilm Games product.</p>
+      </div>
+      <p class="footer-top"><a href="/">Back to home</a></p>
+    </div>
+  </footer>
+
+  <script src="main.js" defer></script>
 </body>
 </html>
