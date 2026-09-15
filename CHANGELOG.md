@@ -1,27 +1,70 @@
 # Changelog
 
-## 2026-08-25 — Polish: self-hosted fonts, social card, a11y
+## 2026-09-11 — IQRUNWAY leisure #5
 
-- Self-hosted Cormorant Garamond + Manrope (woff2, `font-display: swap`); Google Fonts CDN dropped
-- Social card now PNG 1200×630 with full `og:image`/`twitter:image` metadata; SVG kept as asset
-- Apple touch icon (180×180) added to page head and web manifest
-- 404 page shares full site chrome (header, nav, footer) instead of inline-styled stub
-- Mobile nav: focus trap, Escape returns focus to toggle, ARIA labels synced
-- Inline styles migrated to utility classes; responsive breakpoints retuned (880px nav, 768px grids, small-screen hero, 1920px+ wide layout)
-- Hero/interior imagery recompressed (~57% / ~52% smaller); `fetchpriority="high"` on hero
-- JSON-LD structured data (WebSite, WebPage, Place, DefinedTermSet)
-- Service worker cache bump to `plazir15-v5`; fonts + new assets precached; precache misses logged
+- Added a public-safe model assessment board at `/iqrunway/`
+- Added IQRUNWAY as Entertainment for humans entry #5
+- Kept site-reported outcomes distinct from overall IQ, rankings, and human latency claims
+- Excluded protected test items, screenshots, transcripts, private paths, and personal identifiers
 
-## 2026-08-06 — Redesign: homage & directed abundance
+## 2026-08-25 — Slopcast leisure deck cards
 
-- Full visual redesign: editorial dark teal / chrome / botanical green
-- New narrative arc: Plazir-15 as homage to agent/AI abundance and accel vs decel framed through charter lore
-- Hero + interior bio-dome imagery
-- Expanded sections: Homage, Agents of leisure, Paths (accel/decel), richer timeline
-- Charter ballot demo with two civic questions
-- Typography: Cormorant Garamond + Manrope
-- Service worker cache bump to `plazir15-v4`
+- Leisure deck is a 4-card grid; each card mirrors its element (snake board, 512QA ranks, speedrun meter, Slopcast studio)
+- Slopcast card + studio panel borrow cover language: neon nameplates, cyan waveforms, matte black, LEX accent
+- Cover art at `images/slopcast-cover.jpg`; Spotify show https://open.spotify.com/show/5AftGupUTbPW4Vxy9iXZPS
 
-## Earlier
+## 2026-08-25 — Slopcast leisure #4
 
-See git history for prior wiki-style codex releases.
+- Linked AI-generated podcasts (Slopcast / VGPNKHOLDINGS LLC) from Entertainment for humans as leisure #4
+- Spotify: https://open.spotify.com/show/5AftGupUTbPW4Vxy9iXZPS
+
+## 2026-08-24 — Speedrun outbound is ds4cc
+
+- Nav, leisure, paths, and README point at https://ds4cc.com/speedrun/
+- Do not copy the speedrun HTML into this repo as the outbound
+
+## 2026-08-24 — Token Speedrun outbound (ds4cc)
+
+- Nav, mobile, leisure #3, and paths / sekhmet-links point at https://ds4cc.com/speedrun/
+- No in-repo copy of the board HTML. No prompt pastes.
+
+2026-08-24 — Native Token Speedrun
+
+- Slim receipts board lives at `/speedrun/` on this site
+- Nav, mobile, and paths point at `speedrun/` instead of ds4cc.com
+
+## 2026-08-24 — Token Speedrun outbound
+
+- Linked Token Speedrun from primary nav, mobile nav, and the paths / sekhmet-links line to https://ds4cc.com/speedrun/
+- Public paid-OAuth receipts board (not a grant). Work speaks. No input pastes. No in-repo copy of the board.
+
+2026-08-22 — WIP #2 512QA outbound
+
+- Linked 512QA highlights from Entertainment for humans as WIP #2 (outbound Spark Pages board)
+- Snake Autopilot stays listed Game 01; Tetris Autopilot remains unlisted Game 02
+
+## 2026-08-19 — Siduri at the Edge of the Sea
+
+- Added a dedicated page for Siduri’s counsel to Gilgamesh and its answer to the hero’s pursuit of immortality
+- Preserved the selected passage verbatim and the accompanying interpretation with typographical cleanup
+- Linked the page from the civic leisure section and sources; added it to the sitemap
+
+## 2026-08-18 — 1337b contents guide
+
+- Added a dedicated Aristotle, *Politics* VIII.2–3 page covering the complete Bekker page 1337b
+- Added a line-ranged contents outline for 1337b1–42: education and utility, liberal and banausic study, the four customary subjects, music, leisure, and play
+- Added outbound links to the W. D. Ross Greek edition in Perseus / Scaife and the public-domain Jowett translation
+- Linked the page from the civic leisure section and sources; added it to the sitemap
+
+## 2026-08-16 — Civic arcade
+
+- Added Snake Autopilot under “Entertainment for Humans”
+- Added persistent device-local game saves and best-run records
+- Added manual controls, touch input, and guaranteed Hamiltonian autoplay
+
+## 2026-08-06 — Redesign
+
+- Full visual redesign (editorial teal / chrome / botanical green)
+- New homage sections: Agents of leisure, Accel & Decel in Plazir terms
+- Hero + interior art; dual-question charter ballot demo
+- Glossary, timeline, co-rulers, sources retained and expanded

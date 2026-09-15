@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Token Speedrun | Plazir-15</title>
+  <meta name="description" content="Token Speedrun — the Plazir-15 leisure board tracking weekly LLM token budgets: clocks, burn curves, and run receipts." />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#070d10" />
+  <link rel="canonical" href="https://veigapunk.github.io/speedrun/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Token Speedrun | Plazir-15" />
+  <meta property="og:description" content="Weekly LLM token budgets on one leisure board: clocks, burn curves, and run receipts." />
+  <meta property="og:url" content="https://veigapunk.github.io/speedrun/" />
+  <meta name="twitter:card" content="summary" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="preload" href="../assets/fonts/JetBrainsMonoNLNerdFontMono-Regular.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="speedrun.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="top">
+    <a class="brand" href="../#leisure">Plazir-15 <small>leisure · speedrun</small></a>
+    <nav class="nav">
+      <a href="#codex">Codex</a>
+      <a href="#run-kimi">Kimi</a>
+      <a href="#run-200">$200</a>
+      <a href="#board">Board</a>
+      <a href="../#leisure">← Leisure</a>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="hero">
+      <p class="eyebrow">token speedrun · star run</p>
+      <h1>60% of weekly 20x in ~1 hour.</h1>
+      <p class="lede">Codex oneshot done. gpt-5.6-sol ultra. 1h 1m 18s. 1,018,795 goal tokens. Receipt: xbgst-codex. Kimi and the $200 seed stay on the board.</p>
+      <div class="hero-stats">
+        <div class="stat"><span class="n" id="hero-live-pct">60%</span><span class="l">weekly 20x</span></div>
+        <div class="stat"><span class="n">1h 1m</span><span class="l">oneshot clock</span></div>
+        <div class="stat"><span class="n">1.02M</span><span class="l">goal tokens</span></div>
+        <div class="stat"><span class="n" id="hero-n-runs">3</span><span class="l">runs on board</span></div>
+      </div>
+    </section>
+
+    <section class="panel" id="codex">
+      <p class="eyebrow">closed · oneshot · gpt-5.6-sol ultra</p>
+      <h2 id="live-title">Loading…</h2>
+      <p class="summary" id="live-summary"></p>
+      <div class="chips">
+        <span class="chip chip-closed">closed</span>
+        <span class="chip chip-closed">done</span>
+        <span class="chip">oneshot</span>
+        <span class="chip">weekly 10080</span>
+      </div>
+      <div class="meter">
+        <div class="pace-row"><strong id="live-pct">60%</strong> of weekly 20x</div>
+        <div class="meter-bar"><div class="meter-fill" id="live-fill"></div></div>
+      </div>
+      <p class="pace-row">clock <strong id="live-pace">1h 1m 18s</strong></p>
+      <p class="pace-row">goal tokens <strong id="live-eta">1,018,795</strong></p>
+      <div class="curve-wrap">
+        <svg id="curve" viewBox="0 0 640 220" role="img" aria-label="Codex burn curve">
+          <text class="curve-axis" x="8" y="16">% used</text>
+          <text class="curve-axis" x="520" y="212">minutes</text>
+          <path class="curve-fill" id="curve-fill" d=""></path>
+          <path class="curve-line" id="curve-line" d=""></path>
+          <circle class="curve-dot" id="curve-dot" r="4" cx="-10" cy="-10"></circle>
+        </svg>
+      </div>
+      <dl class="metrics" id="live-metrics"></dl>
+      <p class="repo-out" id="codex-wrap">
+        <span class="repo-btn repo-btn-static">receipt: xbgst-codex (private repo)</span>
+      </p>
+    </section>
+
+    <section class="panel live" id="run-kimi">
+      <p class="eyebrow">live · kimi</p>
+      <h2 id="kimi-title">Loading…</h2>
+      <p class="summary" id="kimi-summary"></p>
+      <ol class="timeline" id="kimi-timeline"></ol>
+      <dl class="metrics" id="kimi-metrics"></dl>
+    </section>
+
+    <section class="panel" id="run-200">
+      <p class="eyebrow">seed · closed</p>
+      <h2 id="run-title">Loading…</h2>
+      <p class="summary" id="run-summary"></p>
+      <ol class="timeline" id="run-timeline"></ol>
+      <dl class="metrics" id="run-metrics"></dl>
+      <p class="links" id="run-links"></p>
+    </section>
+
+    <section class="panel" id="board">
+      <p class="eyebrow">leaderboard</p>
+      <h2>Runs</h2>
+      <div class="board-wrap">
+        <table class="board">
+          <thead>
+            <tr><th>#</th><th>Runner</th><th>Provider</th><th>Budget</th><th>Clock</th><th>Mode</th><th>Status</th></tr>
+          </thead>
+          <tbody id="board-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <footer class="site-foot">
+    <p>Part of the <a href="../">Plazir-15 Fan Codex</a> — a non-commercial fan project.</p>
+  </footer>
+  <script src="main.js" type="module"></script>
+</body>
+</html>

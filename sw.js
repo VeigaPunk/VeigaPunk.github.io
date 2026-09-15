@@ -1,121 +1,14 @@
-/* Plazir-15 Fan Codex — offline shell (GitHub Pages only). */
-/* Bump CACHE when shipping material asset changes. */
-var CACHE = "plazir15-v5";
-var PRECACHE = [
-  "./",
-  "./index.html",
-  "./styles.css",
-  "./main.js",
-  "./404.html",
-  "./humans.txt",
-  "./site.webmanifest",
-  "./robots.txt",
-  "./sitemap.xml",
-  "./assets/favicon.svg",
-  "./assets/dome.svg",
-  "./assets/droid.svg",
-  "./assets/hyperloop.svg",
-  "./assets/ballot.svg",
-  "./assets/landing.svg",
-  "./assets/og-card.svg",
-  "./assets/og-card.png",
-  "./assets/apple-touch-icon.png",
-  "./assets/fonts/fonts.css",
-  "./assets/fonts/cormorant-garamond-italic-500.woff2",
-  "./assets/fonts/cormorant-garamond-normal-500.woff2",
-  "./assets/fonts/cormorant-garamond-normal-600.woff2",
-  "./assets/fonts/manrope-normal-400.woff2",
-  "./assets/fonts/manrope-normal-500.woff2",
-  "./assets/fonts/manrope-normal-600.woff2",
-  "./assets/fonts/manrope-normal-700.woff2",
-  "./images/hero-domes.jpg",
-  "./images/interior-leisure.jpg",
-  "./.well-known/security.txt",
-];
-
-function precacheAll(cache) {
-  return Promise.all(
-    PRECACHE.map(function (url) {
-      return cache.add(url).catch(function (err) {
-        /* one miss must not abort the whole install, but log it */
-        console.warn("sw precache miss:", url, err);
-      });
-    })
-  );
-}
-
-function matchFirst(cache, urls) {
-  return urls.reduce(function (chain, url) {
-    return chain.then(function (res) {
-      if (res) return res;
-      return cache.match(url);
-    });
-  }, Promise.resolve(null));
-}
-
-self.addEventListener("install", function (event) {
-  event.waitUntil(
-    caches
-      .open(CACHE)
-      .then(precacheAll)
-      .then(function () {
-        return self.skipWaiting();
-      })
+/* Plazir-15 Fan Codex — sw.js replaced by the leisure-deck surface.
+   This worker exists only to retire the old precache shell: it deletes
+   every cache it owns and unregisters itself, then stays inert. */
+self.addEventListener("install", function (e) { self.skipWaiting(); });
+self.addEventListener("activate", function (e) {
+  e.waitUntil(
+    caches.keys()
+      .then(function (keys) { return Promise.all(keys.map(function (k) { return caches.delete(k); })); })
+      .then(function () { return self.registration.unregister(); })
+      .then(function () { return self.clients.matchAll(); })
+      .then(function (clients) { clients.forEach(function (c) { c.navigate(c.url); }); })
   );
 });
-
-self.addEventListener("activate", function (event) {
-  event.waitUntil(
-    caches
-      .keys()
-      .then(function (keys) {
-        return Promise.all(
-          keys.map(function (key) {
-            if (key !== CACHE) return caches.delete(key);
-          })
-        );
-      })
-      .then(function () {
-        return self.clients.claim();
-      })
-  );
-});
-
-function isNavigation(request) {
-  return (
-    request.mode === "navigate" ||
-    (request.method === "GET" &&
-      request.headers.get("accept") &&
-      request.headers.get("accept").indexOf("text/html") !== -1)
-  );
-}
-
-self.addEventListener("fetch", function (event) {
-  var req = event.request;
-  if (req.method !== "GET") return;
-
-  event.respondWith(
-    caches.open(CACHE).then(function (cache) {
-      return fetch(req)
-        .then(function (res) {
-          if (res && res.ok && res.type === "basic") {
-            cache.put(req, res.clone());
-          }
-          return res;
-        })
-        .catch(function () {
-          return cache.match(req).then(function (cached) {
-            if (cached) return cached;
-            if (isNavigation(req)) {
-              return matchFirst(cache, [
-                "./index.html",
-                "./",
-                "./404.html",
-              ]);
-            }
-            return undefined;
-          });
-        });
-    })
-  );
-});
+self.addEventListener("fetch", function () { /* passthrough: no respondWith */ });
