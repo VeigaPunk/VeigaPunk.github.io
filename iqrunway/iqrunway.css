@@ -15,6 +15,7 @@
   --amber: #c4a76a;
   --danger: #cf8585;
   --border: color-mix(in oklab, #e8f0f2 12%, transparent);
+  --focus: #9ee0d4;
   --font: "JetBrainsMonoNL Nerd Font Mono", "JetBrains Mono", ui-monospace, monospace;
 }
 
@@ -38,6 +39,11 @@ button { font: inherit; }
 
 .skip-link { position: absolute; left: -9999px; top: 0; z-index: 100; padding: 0.75rem 1rem; background: var(--leaf); color: var(--bg); font-weight: 700; text-decoration: none; }
 .skip-link:focus { left: 1rem; top: 1rem; }
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
 
 .top {
   position: sticky;

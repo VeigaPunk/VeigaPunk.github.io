@@ -1,7 +1,7 @@
 @font-face { font-family: "JetBrainsMonoNL Nerd Font Mono"; src: url("../assets/fonts/JetBrainsMonoNLNerdFontMono-Regular.woff2") format("woff2"); font-weight: 400; font-display: swap; }
 @font-face { font-family: "JetBrainsMonoNL Nerd Font Mono"; src: url("../assets/fonts/JetBrainsMonoNLNerdFontMono-Medium.woff2") format("woff2"); font-weight: 500; font-display: swap; }
 @font-face { font-family: "JetBrainsMonoNL Nerd Font Mono"; src: url("../assets/fonts/JetBrainsMonoNLNerdFontMono-Bold.woff2") format("woff2"); font-weight: 700; font-display: swap; }
-:root { --bg:#070d10; --fg:#e8f0f2; --muted:#9aafb6; --faint:#6d838c; --leaf:#6baa88; --teal:#5aa8a0; --border:color-mix(in oklab,#e8f0f2 12%,transparent); --font:"JetBrainsMonoNL Nerd Font Mono", ui-monospace, monospace; }
+:root { --bg:#070d10; --fg:#e8f0f2; --muted:#9aafb6; --faint:#6d838c; --leaf:#6baa88; --teal:#5aa8a0; --border:color-mix(in oklab,#e8f0f2 12%,transparent); --focus:#9ee0d4; --font:"JetBrainsMonoNL Nerd Font Mono", ui-monospace, monospace; }
 * { box-sizing: border-box; }
 html { color-scheme: dark; }
 body { margin:0; min-height:100dvh; background:linear-gradient(180deg,#05090b,#070d10 40%,#091317); color:var(--fg); font-family:var(--font); font-variant-ligatures:none; line-height:1.6; }
@@ -25,6 +25,11 @@ a { color: inherit; }
 .skip-link:focus {
   left: 1rem;
   top: 1rem;
+}
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
 }
 .model-jump {
   position: sticky;
