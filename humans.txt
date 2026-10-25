@@ -1,0 +1,8 @@
+/* humans.txt */
+Team: VeigaPunk — operator & author
+Site: Plazir-15 fan codex + sub-sites (512qa, sekhmet, siduri, snake, tetris, 1337b, iqrunway)
+Stack: hand-rolled HTML/CSS/JS, no framework, no build step — GitHub Pages
+Design: matte-black terminal native; one hot accent per site; mono-first typography
+Type: system mono stacks + bundled nerd fonts
+Last update: 2026-10-25 (site polish round-up)
+Contact: github.com/VeigaPunk

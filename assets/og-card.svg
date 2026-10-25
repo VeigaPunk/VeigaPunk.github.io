@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="glow" cx="85%" cy="20%" r="70%">
+      <stop offset="0%" stop-color="#10202a"/>
+      <stop offset="100%" stop-color="#070d10"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <g fill="none" stroke="#14242b" stroke-width="1">
+    <path d="M770 470a300 300 0 0 1 600 0" opacity="0.6"/>
+    <path d="M820 470a250 250 0 0 1 500 0" opacity="0.7"/>
+    <path d="M870 470a200 200 0 0 1 400 0" opacity="0.8"/>
+    <line x1="700" y1="470" x2="1200" y2="470"/>
+  </g>
+  <g font-family="ui-monospace, Menlo, monospace">
+    <text x="80" y="130" fill="#5eb8b0" font-size="26" letter-spacing="4">VEIGAPUNK · FAN CODEX</text>
+    <text x="76" y="290" fill="#e8f1f4" font-size="120" font-weight="bold">Plazir-15</text>
+    <text x="80" y="360" fill="#c8d6db" font-size="30">A domed paradise of the Outer Rim — abundance</text>
+    <text x="80" y="402" fill="#c8d6db" font-size="30">under glass, droid labor as civic infrastructure.</text>
+    <text x="80" y="540" fill="#8aa1a8" font-size="22">veigapunk.github.io — unofficial · not Lucasfilm</text>
+  </g>
+</svg>
