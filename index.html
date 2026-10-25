@@ -29,17 +29,78 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="manifest" href="site.webmanifest" />
   <script type="application/ld+json">
-  {
+{
     "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Plazir-15 Fan Codex",
-    "url": "https://veigapunk.github.io/",
-    "description": "Unofficial fan codex for Plazir-15 from The Mandalorian."
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://veigapunk.github.io/#website",
+        "name": "Plazir-15 Fan Codex",
+        "url": "https://veigapunk.github.io/",
+        "description": "Unofficial fan codex for Plazir-15 from The Mandalorian."
+      },
+      {
+        "@type": "Place",
+        "@id": "https://veigapunk.github.io/#place",
+        "name": "Plazir-15",
+        "description": "A domed paradise of the Outer Rim — elective monarchy, direct democracy, and leisure underwritten by a rehabilitated droid labor pool."
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://veigapunk.github.io/#webpage",
+        "url": "https://veigapunk.github.io/",
+        "name": "Plazir-15 — Domed Paradise of the Outer Rim | Fan Codex",
+        "isPartOf": {
+          "@id": "https://veigapunk.github.io/#website"
+        },
+        "about": {
+          "@id": "https://veigapunk.github.io/#place"
+        }
+      },
+      {
+        "@type": "DefinedTermSet",
+        "@id": "https://veigapunk.github.io/#glossary",
+        "name": "Codex glossary",
+        "hasDefinedTerm": [
+          {
+            "@type": "DefinedTerm",
+            "name": "Plazir-15",
+            "description": "A domed paradise of the Outer Rim; grid section N-2."
+          },
+          {
+            "@type": "DefinedTerm",
+            "name": "The Duchess",
+            "description": "Ruler of Plazir-15; to Din Djarin and Bo-Katan Kryze: 'You will always be welcome in our domed paradise.'"
+          },
+          {
+            "@type": "DefinedTerm",
+            "name": "Droid labor",
+            "description": "Rehabilitated droids perform civic labor, underwriting the planet's leisure economy."
+          },
+          {
+            "@type": "DefinedTerm",
+            "name": "Elective monarchy",
+            "description": "Plazir-15's polity: a monarchy whose ruler is chosen, paired with direct democracy."
+          },
+          {
+            "@type": "DefinedTerm",
+            "name": "Guns for Hire",
+            "description": "The Mandalorian chapter (Ch. 22) in which Plazir-15 debuts."
+          },
+          {
+            "@type": "DefinedTerm",
+            "name": "Leisure deck",
+            "description": "Entertainment surface of the codex; abundance under glass made concrete."
+          }
+        ]
+      }
+    ]
   }
   </script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
+  <div id="net-banner" role="status" aria-live="polite">You are offline — the codex shell is served from cache.</div>
 
   <header class="site-header" id="top">
     <div class="section-max header-inner">

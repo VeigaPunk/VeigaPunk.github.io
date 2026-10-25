@@ -111,3 +111,18 @@
 
   renderQuestion();
 })();
+
+// Service worker + offline banner wiring
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/sw.js").catch(() => {});
+  });
+}
+
+const netBanner = document.getElementById("net-banner");
+if (netBanner) {
+  const sync = () => netBanner.classList.toggle("is-visible", !navigator.onLine);
+  sync();
+  window.addEventListener("online", sync);
+  window.addEventListener("offline", sync);
+}

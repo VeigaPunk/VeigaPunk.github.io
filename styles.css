@@ -1821,3 +1821,18 @@ svg {
   color: var(--muted);
   line-height: 1.7;
 }
+
+/* Offline banner (wired by main.js) */
+#net-banner {
+  display: none;
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  padding: 0.5rem 1rem;
+  font: 500 0.8rem/1.4 var(--font-mono, ui-monospace, monospace);
+  color: #e8f1f4;
+  background: #0e171c;
+  border-bottom: 1px solid #14242b;
+  text-align: center;
+}
+#net-banner.is-visible { display: block; }
